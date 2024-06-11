@@ -1,3 +1,4 @@
+//Partial classes are only for those that are using Godot.
 public class GameConstants
 {
     //Animations
