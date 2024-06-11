@@ -79,7 +79,7 @@ characterSprite = NodePath("Sprite3D")
 animationPlayer = NodePath("AnimationPlayer")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-texture = ExtResource("28_87ngf")
+texture = ExtResource("2_xvyak")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

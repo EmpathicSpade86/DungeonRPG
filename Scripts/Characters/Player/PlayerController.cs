@@ -10,19 +10,28 @@ public partial class PlayerController : CharacterBody3D
 
     public override void _Ready()
     {
-        if (characterSprite != null)
-        {
-            GD.Print(characterSprite.Name);
-        }
+
         if (animationPlayer != null)
         {
-            GD.Print(animationPlayer.Name);
+            animationPlayer.Play("Idle");
         }
+
     }
 
     public override void _Input(InputEvent @event) //This Method is called only when the player makes an input 
     {
         direction = Input.GetVector("MoveLeft", "MoveRight", "MoveForward", "MoveBackward"); //Take the Input from the Input Map
+
+        //Change the Animation of the Player based on the Player Input
+        if (direction == Vector2.Zero)
+        {
+            animationPlayer.Play("Idle");
+        }
+        else
+        {
+            animationPlayer.Play("Running");
+        }
+
     }
 
     public override void _PhysicsProcess(double delta)
