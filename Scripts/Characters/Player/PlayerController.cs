@@ -10,26 +10,24 @@ public partial class PlayerController : CharacterBody3D
 
     public override void _Ready()
     {
-
         if (animationPlayer != null)
         {
-            animationPlayer.Play("Idle");
+            animationPlayer.Play(GameConstants.ANIM_IDLE);
         }
-
     }
 
     public override void _Input(InputEvent @event) //This Method is called only when the player makes an input 
     {
-        direction = Input.GetVector("MoveLeft", "MoveRight", "MoveForward", "MoveBackward"); //Take the Input from the Input Map
+        direction = Input.GetVector(GameConstants.INPUT_MOVE_LEFT, GameConstants.INPUT_MOVE_RIGHT, GameConstants.INPUT_MOVE_FORWARD, GameConstants.INPUT_MOVE_BACKWARD); //Take the Input from the Input Map
 
         //Change the Animation of the Player based on the Player Input
         if (direction == Vector2.Zero)
         {
-            animationPlayer.Play("Idle");
+            animationPlayer.Play(GameConstants.ANIM_IDLE);
         }
         else
         {
-            animationPlayer.Play("Running");
+            animationPlayer.Play(GameConstants.ANIM_MOVE);
         }
 
     }
@@ -40,5 +38,16 @@ public partial class PlayerController : CharacterBody3D
         Velocity *= 5.0f;
 
         MoveAndSlide(); //Uses the Velocity to Begin moving the player along with the physics engine 
+        Flip();
+    }
+
+    private void Flip()
+    {
+        bool isNotMovingHorizontally = Velocity.X == 0;
+
+        if (isNotMovingHorizontally) { return; }
+
+        bool isMovingLeft = Velocity.X < 0;
+        characterSprite.FlipH = isMovingLeft;
     }
 }
