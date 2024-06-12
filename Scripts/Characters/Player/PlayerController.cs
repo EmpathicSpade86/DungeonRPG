@@ -4,32 +4,17 @@ using System;
 public partial class PlayerController : CharacterBody3D
 {
     [ExportGroup("Required Nodes")] // Groups all the Exported Attributes Below it into a Group in the Godot Editor
-    [Export] private Sprite3D characterSprite;
-    [Export] private AnimationPlayer animationPlayer;
+    [Export] public Sprite3D characterSprite;
+    [Export] public AnimationPlayer animationPlayer;
     private Vector2 direction = new Vector2(0, 0);
 
     public override void _Ready()
     {
-        if (animationPlayer != null)
-        {
-            animationPlayer.Play(GameConstants.ANIM_IDLE);
-        }
     }
 
     public override void _Input(InputEvent @event) //This Method is called only when the player makes an input 
     {
         direction = Input.GetVector(GameConstants.INPUT_MOVE_LEFT, GameConstants.INPUT_MOVE_RIGHT, GameConstants.INPUT_MOVE_FORWARD, GameConstants.INPUT_MOVE_BACKWARD); //Take the Input from the Input Map
-
-        //Change the Animation of the Player based on the Player Input
-        if (direction == Vector2.Zero)
-        {
-            animationPlayer.Play(GameConstants.ANIM_IDLE);
-        }
-        else
-        {
-            animationPlayer.Play(GameConstants.ANIM_MOVE);
-        }
-
     }
 
     public override void _PhysicsProcess(double delta)
