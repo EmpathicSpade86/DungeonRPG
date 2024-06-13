@@ -7,6 +7,7 @@ public partial class PlayerMoveState : Node
     public override void _Ready()
     {
         characterNode = GetOwner<PlayerController>();
+        SetPhysicsProcess(false); //Disables the Physics Process Method While the State is Inactive
     }
 
     public override void _PhysicsProcess(double delta)
@@ -21,10 +22,15 @@ public partial class PlayerMoveState : Node
     {
         base._Notification(what);
 
+        //Recieved from the State Machine, will then update the player's State
         if (what == 5001)
         {
-            PlayerController characterNode = GetOwner<PlayerController>();
             characterNode.animationPlayer.Play(GameConstants.ANIM_MOVE);
+            SetPhysicsProcess(true);
+        }
+        else if (what == 5002)
+        {
+            SetPhysicsProcess(false);
         }
     }
 }

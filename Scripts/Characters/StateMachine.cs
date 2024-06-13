@@ -25,6 +25,7 @@ public partial class StateMachine : Node
 
         if (newState == null) { return;}
 
+        currentState.Notification(5002); //Notification for disabling states
         currentState = newState;
         currentState.Notification(5001); //Update the Current State of Animation
     }
