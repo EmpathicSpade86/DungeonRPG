@@ -16,6 +16,7 @@ public partial class PlayerIdleState : Node
         {
             characterNode.stateMachine.SwitchState<PlayerMoveState>(); // If the Character is moving, switch the state to the Player Move State
         }
+        
     }
 
     public override void _Notification(int what)

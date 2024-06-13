@@ -4,6 +4,7 @@ public class GameConstants
     //Animations
     public const string ANIM_IDLE = "Idle";
     public const string ANIM_MOVE = "Running";
+    public const string ANIM_DASH = "Dash";
     //Input
     public const string INPUT_MOVE_LEFT = "MoveLeft";
     public const string INPUT_MOVE_RIGHT = "MoveRight";

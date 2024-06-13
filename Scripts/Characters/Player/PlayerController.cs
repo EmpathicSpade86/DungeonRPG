@@ -16,7 +16,7 @@ public partial class PlayerController : CharacterBody3D
     public override void _Input(InputEvent @event) //This Method is called only when the player makes an input 
     {
         direction = Input.GetVector(GameConstants.INPUT_MOVE_LEFT, GameConstants.INPUT_MOVE_RIGHT, GameConstants.INPUT_MOVE_FORWARD, GameConstants.INPUT_MOVE_BACKWARD); //Take the Input from the Input Map
-
+        
     }
 
     public override void _PhysicsProcess(double delta)

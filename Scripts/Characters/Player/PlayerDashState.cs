@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class PlayerMoveState : Node
+public partial class PlayerDashState : Node
 {
     private PlayerController characterNode;
     public override void _Ready()
@@ -12,10 +12,7 @@ public partial class PlayerMoveState : Node
 
     public override void _PhysicsProcess(double delta)
     {
-        if (characterNode.direction == Vector2.Zero)
-        {
-            characterNode.stateMachine.SwitchState<PlayerIdleState>();  // If the Character is not moving, switch the state to the Idle State
-        }
+        // For the Future
     }
 
     public override void _Notification(int what)
@@ -25,7 +22,7 @@ public partial class PlayerMoveState : Node
         //Recieved from the State Machine, will then update the player's State
         if (what == 5001)
         {
-            characterNode.animationPlayer.Play(GameConstants.ANIM_MOVE);
+            characterNode.animationPlayer.Play(GameConstants.ANIM_DASH);
             SetPhysicsProcess(true);
         }
         else if (what == 5002)
