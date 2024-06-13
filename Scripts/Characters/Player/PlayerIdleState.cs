@@ -8,6 +8,7 @@ public partial class PlayerIdleState : Node
     {
         characterNode = GetOwner<PlayerController>();
         SetPhysicsProcess(false); //Disables the Physics Process Method While the State is Inactive
+        SetProcessInput(false); //Disables the Input Method While the State is Inactive
     }
 
     public override void _PhysicsProcess(double delta)
@@ -16,7 +17,6 @@ public partial class PlayerIdleState : Node
         {
             characterNode.stateMachine.SwitchState<PlayerMoveState>(); // If the Character is moving, switch the state to the Player Move State
         }
-        
     }
 
     public override void _Notification(int what)
@@ -28,10 +28,21 @@ public partial class PlayerIdleState : Node
         {
             characterNode.animationPlayer.Play(GameConstants.ANIM_IDLE);
             SetPhysicsProcess(true);
+            SetProcessInput(true);
         }
         else if (what == 5002)
         {
             SetPhysicsProcess(false);
+            SetProcessInput(false);
+        }
+    }
+
+    //Listen for Input for Dash
+    public override void _Input(InputEvent @event)
+    {
+        if (Input.IsActionJustPressed(GameConstants.INPUT_DASH))
+        {
+            characterNode.stateMachine.SwitchState<PlayerDashState>();
         }
     }
 }

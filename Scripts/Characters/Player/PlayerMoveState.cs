@@ -8,6 +8,7 @@ public partial class PlayerMoveState : Node
     {
         characterNode = GetOwner<PlayerController>();
         SetPhysicsProcess(false); //Disables the Physics Process Method While the State is Inactive
+        SetProcessInput(false); //Disables the Input Method While the State is Inactive
     }
 
     public override void _PhysicsProcess(double delta)
@@ -26,11 +27,22 @@ public partial class PlayerMoveState : Node
         if (what == 5001)
         {
             characterNode.animationPlayer.Play(GameConstants.ANIM_MOVE);
+            //Re-Enable the other functions when the State is Active
             SetPhysicsProcess(true);
+            SetProcessInput(true); 
         }
         else if (what == 5002)
         {
             SetPhysicsProcess(false);
+            SetProcessInput(false); //Disables the Input Method While the State is Inactive
+        }
+    }
+
+    public override void _Input(InputEvent @event)
+    {
+        if(Input.IsActionJustPressed(GameConstants.INPUT_DASH))
+        {
+            characterNode.stateMachine.SwitchState<PlayerDashState>();
         }
     }
 }
