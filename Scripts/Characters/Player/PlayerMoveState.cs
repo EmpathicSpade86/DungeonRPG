@@ -16,7 +16,14 @@ public partial class PlayerMoveState : Node
         if (characterNode.direction == Vector2.Zero)
         {
             characterNode.stateMachine.SwitchState<PlayerIdleState>();  // If the Character is not moving, switch the state to the Idle State
+            return;
         }
+
+        characterNode.Velocity = new Vector3(characterNode.direction.X, 0, characterNode.direction.Y);
+        characterNode.Velocity *= 5.0f;
+
+        characterNode.MoveAndSlide(); //Uses the Velocity to Begin moving the player along with the physics engine 
+        characterNode.Flip();
     }
 
     public override void _Notification(int what)
