@@ -1,16 +1,14 @@
 using Godot;
 using System;
 
-public partial class PlayerDashState : Node
+public partial class PlayerDashState : PlayerState
 {
-    private PlayerController characterNode;
     [Export] private Timer dashTimer;
     [Export] private float dashSpeed = 10.0f;
     public override void _Ready()
     {
-        characterNode = GetOwner<PlayerController>();
+        base._Ready(); //Call the base method from the PlayerState class
         dashTimer.Timeout += HandleDashTimeout;
-        SetPhysicsProcess(false); //Disables the Physics Process Method While the State is Inactive
     }
 
     public override void _PhysicsProcess(double delta)
@@ -19,45 +17,34 @@ public partial class PlayerDashState : Node
         characterNode.MoveAndSlide();
         //Call the Flip Method
         characterNode.Flip();
-
-
     }
 
-    public override void _Notification(int what)
+    protected override void EnterState()
     {
-        base._Notification(what);
+        base.EnterState();
+        characterNode.animationPlayer.Play(GameConstants.ANIM_DASH); //Play the Dash Animation
+        characterNode.Velocity = new Vector3(characterNode.direction.X, 0, characterNode.direction.Y); //Grabs the player's current move direction
 
-        //Recieved from the State Machine, will then update the player's State
-        if (what == 5001)
+        if (characterNode.Velocity == Vector3.Zero)
         {
-            characterNode.animationPlayer.Play(GameConstants.ANIM_DASH); //Play the Dash Animation
-            SetPhysicsProcess(true);
-            characterNode.Velocity = new Vector3(characterNode.direction.X, 0, characterNode.direction.Y); //Grabs the player's current move direction
+            characterNode.Velocity = characterNode.characterSprite.FlipH ? //Checking the Sprite's FlipH Property
+                Vector3.Left : // if it is enabled, the player is facing left, then it will set the velocity to Vector3.Left
+                Vector3.Right; // if it is disabled, the player is facing right, then it will set the velocity to Vector3.right 
 
-            if (characterNode.Velocity == Vector3.Zero)
-            {
-                characterNode.Velocity = characterNode.characterSprite.FlipH ? //Checking the Sprite's FlipH Property
-                    Vector3.Left : // if it is enabled, the player is facing left, then it will set the velocity to Vector3.Left
-                    Vector3.Right; // if it is disabled, the player is facing right, then it will set the velocity to Vector3.right 
-
-                //Alternative Method that does the same thing
-                /*
-                if(characterNode.characterSprite.FlipH){
-                    characterNode.Velocity = Vector3.Left;
-                }else{
-                    characterNode.Velocity = Vector3.Right;
-                }
-                */
-
+            //Alternative Method that does the same thing
+            /*
+            if(characterNode.characterSprite.FlipH){
+                characterNode.Velocity = Vector3.Left;
+            }else{
+                characterNode.Velocity = Vector3.Right;
             }
+            */
 
-            characterNode.Velocity *= dashSpeed; //Apply the dash speed to the Player
-            dashTimer.Start(); //Start the Timer when you switch to the State
         }
-        else if (what == 5002)
-        {
-            SetPhysicsProcess(false);
-        }
+
+        characterNode.Velocity *= dashSpeed; //Apply the dash speed to the Player
+        dashTimer.Start(); //Start the Timer when you switch to the State
+
     }
 
     private void HandleDashTimeout()

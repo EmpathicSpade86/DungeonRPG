@@ -1,16 +1,8 @@
 using Godot;
 using System;
 
-public partial class PlayerMoveState : Node
+public partial class PlayerMoveState : PlayerState
 {
-    private PlayerController characterNode;
-    public override void _Ready()
-    {
-        characterNode = GetOwner<PlayerController>();
-        SetPhysicsProcess(false); //Disables the Physics Process Method While the State is Inactive
-        SetProcessInput(false); //Disables the Input Method While the State is Inactive
-    }
-
     public override void _PhysicsProcess(double delta)
     {
         if (characterNode.direction == Vector2.Zero)
@@ -26,25 +18,6 @@ public partial class PlayerMoveState : Node
         characterNode.Flip();
     }
 
-    public override void _Notification(int what)
-    {
-        base._Notification(what);
-
-        //Recieved from the State Machine, will then update the player's State
-        if (what == 5001)
-        {
-            characterNode.animationPlayer.Play(GameConstants.ANIM_MOVE);
-            //Re-Enable the other functions when the State is Active
-            SetPhysicsProcess(true);
-            SetProcessInput(true); 
-        }
-        else if (what == 5002)
-        {
-            SetPhysicsProcess(false);
-            SetProcessInput(false); //Disables the Input Method While the State is Inactive
-        }
-    }
-
     public override void _Input(InputEvent @event)
     {
         if(Input.IsActionJustPressed(GameConstants.INPUT_DASH))
@@ -52,4 +25,11 @@ public partial class PlayerMoveState : Node
             characterNode.stateMachine.SwitchState<PlayerDashState>();
         }
     }
+
+    protected override void EnterState()
+    {
+        base.EnterState();
+        characterNode.animationPlayer.Play(GameConstants.ANIM_MOVE);
+    }
+
 }
