@@ -23,7 +23,7 @@ public partial class StateMachine : Node
             }
         }
 
-        if (newState == null) { return;}
+        if (newState == null) { return; }
 
         currentState.Notification(GameConstants.NOTIFCATION_EXIT_STATE); //Notification for disabling states
         currentState = newState;

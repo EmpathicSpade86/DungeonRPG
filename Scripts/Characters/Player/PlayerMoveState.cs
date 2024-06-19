@@ -3,6 +3,8 @@ using System;
 
 public partial class PlayerMoveState : PlayerState
 {
+    [Export(PropertyHint.Range, "0,20,0.1")] private float playerSpeed = 5.0f; 
+
     public override void _PhysicsProcess(double delta)
     {
         if (characterNode.direction == Vector2.Zero)
@@ -12,7 +14,7 @@ public partial class PlayerMoveState : PlayerState
         }
 
         characterNode.Velocity = new Vector3(characterNode.direction.X, 0, characterNode.direction.Y);
-        characterNode.Velocity *= 5.0f;
+        characterNode.Velocity *= playerSpeed; //Makes the Player move faster
 
         characterNode.MoveAndSlide(); //Uses the Velocity to Begin moving the player along with the physics engine 
         characterNode.Flip();
@@ -20,7 +22,7 @@ public partial class PlayerMoveState : PlayerState
 
     public override void _Input(InputEvent @event)
     {
-        if(Input.IsActionJustPressed(GameConstants.INPUT_DASH))
+        if (Input.IsActionJustPressed(GameConstants.INPUT_DASH))
         {
             characterNode.stateMachine.SwitchState<PlayerDashState>();
         }
