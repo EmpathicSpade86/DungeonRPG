@@ -9,7 +9,7 @@ public partial class StateMachine : Node
     public override void _Ready()
     {
         //Basically Sends a message to any script that has the _Notification Function with that number
-        currentState.Notification(5001); //A completely random number not used by Godot 
+        currentState.Notification(GameConstants.NOTIFCATION_ENTER_STATE); //A completely random number not used by Godot 
     }
 
     public void SwitchState<T>() //Given a type: PlayerIdleState, PlayerMoveState...
@@ -25,8 +25,8 @@ public partial class StateMachine : Node
 
         if (newState == null) { return;}
 
-        currentState.Notification(5002); //Notification for disabling states
+        currentState.Notification(GameConstants.NOTIFCATION_EXIT_STATE); //Notification for disabling states
         currentState = newState;
-        currentState.Notification(5001); //Update the Current State of Animation
+        currentState.Notification(GameConstants.NOTIFCATION_ENTER_STATE); //Update the Current State of Animation
     }
 }

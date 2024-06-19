@@ -19,14 +19,14 @@ public abstract partial class PlayerState : Node
         base._Notification(what);
 
         //Recieved from the State Machine, will then update the player's State
-        if (what == 5001)
+        if (what == GameConstants.NOTIFCATION_ENTER_STATE)
         {
             EnterState(); // Calls the virtual method that the children have modified, used for animations and such
             //Turns on the node when it is active
             SetPhysicsProcess(true);
             SetProcessInput(true);
         }
-        else if (what == 5002)
+        else if (what == GameConstants.NOTIFCATION_EXIT_STATE)
         {
             //Deactivates the nodes when its state is deactivated
             SetPhysicsProcess(false);
