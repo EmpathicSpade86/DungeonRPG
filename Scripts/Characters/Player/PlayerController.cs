@@ -4,9 +4,9 @@ using System;
 public partial class PlayerController : CharacterBody3D
 {
     [ExportGroup("Required Nodes")] // Groups all the Exported Attributes Below it into a Group in the Godot Editor
-    [Export] public Sprite3D characterSprite;
-    [Export] public AnimationPlayer animationPlayer;
-    [Export] public StateMachine stateMachine;
+    [Export] public Sprite3D CharacterSpriteNode { get; private set; }
+    [Export] public AnimationPlayer AnimationPlayerNode { get; private set; }
+    [Export] public StateMachine StateMachineNode { get; private set; }
     public Vector2 direction = new Vector2(0, 0);
 
     public override void _Ready()
@@ -20,7 +20,7 @@ public partial class PlayerController : CharacterBody3D
 
     public override void _PhysicsProcess(double delta)
     {
-        
+
     }
 
     public void Flip()
@@ -30,6 +30,6 @@ public partial class PlayerController : CharacterBody3D
         if (isNotMovingHorizontally) { return; }
 
         bool isMovingLeft = Velocity.X < 0;
-        characterSprite.FlipH = isMovingLeft;
+        CharacterSpriteNode.FlipH = isMovingLeft;
     }
 }
