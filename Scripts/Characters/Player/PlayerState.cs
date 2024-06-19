@@ -1,7 +1,10 @@
 using Godot;
 using System;
 
-public partial class PlayerState : Node
+
+//Abstract makes it so that the class cannot be instantiated. I.E. It cannot be attached to a node (It will throw an error)
+//Must Define a Child Class to use this class
+public abstract partial class PlayerState : Node
 {
     protected PlayerController characterNode; // Protected so children can access, not outside of these classes
     public override void _Ready()
