@@ -37,10 +37,10 @@
 [ext_resource type="Texture2D" uid="uid://r4gjoo6atpp8" path="res://Assets/Sprites/Characters/Player/Sliding/Sliding_001.png" id="33_t0t3l"]
 [ext_resource type="Script" path="res://Scripts/Characters/Player/PlayerDashState.cs" id="34_opw63"]
 [ext_resource type="Texture2D" uid="uid://blufxqr83v62n" path="res://Assets/Sprites/Characters/Player/Sliding/Sliding_002.png" id="34_vnii3"]
-[ext_resource type="Script" path="res://Scripts/Characters/StateMachine.cs" id="34_vovua"]
 [ext_resource type="Texture2D" uid="uid://ciqpgho5opmjv" path="res://Assets/Sprites/Characters/Player/Sliding/Sliding_003.png" id="35_wordl"]
 [ext_resource type="Texture2D" uid="uid://dx2kc7exb5d4p" path="res://Assets/Sprites/Characters/Player/Sliding/Sliding_004.png" id="36_3k5jp"]
 [ext_resource type="Texture2D" uid="uid://r5i1revqg4o6" path="res://Assets/Sprites/Characters/Player/Sliding/Sliding_005.png" id="37_y5osh"]
+[ext_resource type="PackedScene" uid="uid://ckh1cowjbabvr" path="res://Scenes/Characters/state_machine.tscn" id="38_2g70i"]
 
 [sub_resource type="Animation" id="Animation_utk6q"]
 resource_name = "Dash"
@@ -102,27 +102,26 @@ _data = {
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1ll2h"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("CharacterSpriteNode", "AnimationPlayerNode", "StateMachineNode")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("SpriteNode", "AnimationPlayerNode", "StateMachineNode")]
 collision_layer = 2
 floor_max_angle = 1.55334
 floor_snap_length = 0.2
 script = ExtResource("1_4jxxq")
-CharacterSpriteNode = NodePath("Sprite3D")
+SpriteNode = NodePath("Sprite3D")
 AnimationPlayerNode = NodePath("AnimationPlayer")
 StateMachineNode = NodePath("StateMachine")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 pixel_size = 0.0025
 texture_filter = 0
-texture = ExtResource("20_6cuup")
+texture = ExtResource("25_wf84c")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_igcbq")
 }
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("currentState", "states")]
-script = ExtResource("34_vovua")
+[node name="StateMachine" parent="." node_paths=PackedStringArray("currentState", "states") instance=ExtResource("38_2g70i")]
 currentState = NodePath("IdleState")
 states = [NodePath("IdleState"), NodePath("MoveState"), NodePath("DashState")]
 

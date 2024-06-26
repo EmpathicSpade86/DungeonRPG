@@ -28,7 +28,7 @@ public partial class PlayerDashState : PlayerState
 
         if (characterNode.Velocity == Vector3.Zero)
         {
-            characterNode.Velocity = characterNode.CharacterSpriteNode.FlipH ? //Checking the Sprite's FlipH Property
+            characterNode.Velocity = characterNode.SpriteNode.FlipH ? //Checking the Sprite's FlipH Property
                 Vector3.Left : // if it is enabled, the player is facing left, then it will set the velocity to Vector3.Left
                 Vector3.Right; // if it is disabled, the player is facing right, then it will set the velocity to Vector3.right 
 

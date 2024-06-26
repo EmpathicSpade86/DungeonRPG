@@ -1,7 +1,8 @@
-[gd_scene load_steps=107 format=3 uid="uid://bx1nqkdhf2iyc"]
+[gd_scene load_steps=110 format=3 uid="uid://bx1nqkdhf2iyc"]
 
 [ext_resource type="Texture2D" uid="uid://c7ago5k1q0dac" path="res://Assets/Sprites/Characters/Enemy Knight/Death/0_Demons_of_Darkness_Dying_014.png" id="1_ghqmc"]
 [ext_resource type="Texture2D" uid="uid://dk0e11ifgx7ym" path="res://Assets/Sprites/Characters/Enemy Knight/Move/0_Demons_of_Darkness_Walking_020.png" id="1_n3njb"]
+[ext_resource type="Script" path="res://Scripts/Characters/Enemy/EnemyController.cs" id="1_nh8r1"]
 [ext_resource type="Texture2D" uid="uid://dpx066np2gbhc" path="res://Assets/Sprites/Characters/Enemy Knight/Idle/0_Demons_of_Darkness_Idle_000.png" id="2_4guxb"]
 [ext_resource type="Texture2D" uid="uid://cy76ee6ql8no" path="res://Assets/Sprites/Characters/Enemy Knight/Idle/0_Demons_of_Darkness_Idle_001.png" id="3_txhjh"]
 [ext_resource type="Texture2D" uid="uid://bt6qihne82f2y" path="res://Assets/Sprites/Characters/Enemy Knight/Idle/0_Demons_of_Darkness_Idle_002.png" id="4_4gnwv"]
@@ -99,6 +100,8 @@
 [ext_resource type="Texture2D" uid="uid://lk7ymv26ypmi" path="res://Assets/Sprites/Characters/Enemy Knight/Attack/0_Demons_of_Darkness_Slashing_009.png" id="79_hcfj7"]
 [ext_resource type="Texture2D" uid="uid://ckgpr8fxv1vs1" path="res://Assets/Sprites/Characters/Enemy Knight/Attack/0_Demons_of_Darkness_Slashing_010.png" id="80_3ccj4"]
 [ext_resource type="Texture2D" uid="uid://i12hi1pcvbkt" path="res://Assets/Sprites/Characters/Enemy Knight/Attack/0_Demons_of_Darkness_Slashing_011.png" id="81_bq7ds"]
+[ext_resource type="PackedScene" uid="uid://ckh1cowjbabvr" path="res://Scenes/Characters/state_machine.tscn" id="100_d8mbl"]
+[ext_resource type="Script" path="res://Scripts/Characters/Enemy/EnemyIdleState.cs" id="101_ove7t"]
 
 [sub_resource type="Animation" id="Animation_7ajj3"]
 resource_name = "Idle"
@@ -205,14 +208,17 @@ _data = {
 }
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fgwu3"]
-radius = 2.0
-height = 6.0
+height = 1.50457
 
-[node name="Enemy" type="CharacterBody3D"]
+[node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("SpriteNode", "AnimationPlayerNode", "StateMachineNode")]
+script = ExtResource("1_nh8r1")
+SpriteNode = NodePath("Sprite3D")
+AnimationPlayerNode = NodePath("AnimationPlayer")
+StateMachineNode = NodePath("StateMachine")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-pixel_size = 0.0075
-texture = ExtResource("63_jg6s2")
+pixel_size = 0.0025
+texture = ExtResource("2_4guxb")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -222,3 +228,10 @@ autoplay = "Idle"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_fgwu3")
+
+[node name="StateMachine" parent="." node_paths=PackedStringArray("currentState", "states") instance=ExtResource("100_d8mbl")]
+currentState = NodePath("IdleState")
+states = [NodePath("IdleState")]
+
+[node name="IdleState" type="Node" parent="StateMachine"]
+script = ExtResource("101_ove7t")

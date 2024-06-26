@@ -1,14 +1,8 @@
 using Godot;
 using System;
 
-public partial class PlayerController : CharacterBody3D
+public partial class PlayerController : Character
 {
-    [ExportGroup("Required Nodes")] // Groups all the Exported Attributes Below it into a Group in the Godot Editor
-    [Export] public Sprite3D CharacterSpriteNode { get; private set; }
-    [Export] public AnimationPlayer AnimationPlayerNode { get; private set; }
-    [Export] public StateMachine StateMachineNode { get; private set; }
-    public Vector2 direction = new Vector2(0, 0);
-
     public override void _Ready()
     {
     }
@@ -23,13 +17,4 @@ public partial class PlayerController : CharacterBody3D
 
     }
 
-    public void Flip()
-    {
-        bool isNotMovingHorizontally = Velocity.X == 0;
-
-        if (isNotMovingHorizontally) { return; }
-
-        bool isMovingLeft = Velocity.X < 0;
-        CharacterSpriteNode.FlipH = isMovingLeft;
-    }
 }
