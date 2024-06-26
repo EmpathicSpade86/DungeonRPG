@@ -77,7 +77,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_r266o"]
-resource_name = "Running"
+resource_name = "Move"
 loop_mode = 1
 step = 0.0833333
 tracks/0/type = "value"
@@ -97,7 +97,7 @@ tracks/0/keys = {
 _data = {
 "Dash": SubResource("Animation_utk6q"),
 "Idle": SubResource("Animation_3rexp"),
-"Running": SubResource("Animation_r266o")
+"Move": SubResource("Animation_r266o")
 }
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1ll2h"]
@@ -114,7 +114,7 @@ StateMachineNode = NodePath("StateMachine")
 [node name="Sprite3D" type="Sprite3D" parent="."]
 pixel_size = 0.0025
 texture_filter = 0
-texture = ExtResource("2_xvyak")
+texture = ExtResource("20_6cuup")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
