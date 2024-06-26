@@ -6,5 +6,5 @@ using System;
 //Must Define a Child Class to use this class
 public abstract partial class PlayerState : CharacterState
 {
-    
+
 }
