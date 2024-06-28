@@ -140,14 +140,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.9948, 1.59288, -5.45407)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.16815, 2.51611, 0)
 shape = SubResource("BoxShape3D_x06y8")
 
-[node name="Enemy" parent="." instance=ExtResource("4_hg5ho")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.4306, 5.79251, -0.32328)
-
 [node name="Enemies" type="Node3D" parent="."]
 
 [node name="Path3D" type="Path3D" parent="Enemies"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.61093, 0, -19.3056)
 curve = SubResource("Curve3D_1cmbe")
+
+[node name="Enemy" parent="Enemies/Path3D" node_paths=PackedStringArray("PathNode") instance=ExtResource("4_hg5ho")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.8197, 5.79251, 18.9823)
+PathNode = NodePath("..")
 
 [node name="Path3D2" type="Path3D" parent="Enemies"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.21745, 2.35933, -13.2416)

@@ -8,6 +8,7 @@ public partial class EnemyIdleState : EnemyState
     {
         base.EnterState();
         characterNode.AnimationPlayerNode.Play(GameConstants.ANIM_IDLE);
+        
     }
 
 }

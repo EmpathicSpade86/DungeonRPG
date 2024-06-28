@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.IO;
 
 public abstract partial class Character : CharacterBody3D
 {
@@ -8,7 +9,12 @@ public abstract partial class Character : CharacterBody3D
     [Export] public AnimationPlayer AnimationPlayerNode { get; private set; }
     [Export] public StateMachine StateMachineNode { get; private set; }
 
+    [ExportGroup("AI Nodes")]
+    [Export] public Path3D PathNode { get; private set; }
+
     public Vector2 direction = new Vector2(0, 0);
+
+
 
     public void Flip()
     {
