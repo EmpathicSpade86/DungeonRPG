@@ -15,7 +15,7 @@ public partial class EnemyReturnState : EnemyState
 
     }
 
-    protected override async void EnterState()
+    protected override void EnterState()
     {
         GD.Print("In Return State");   
         characterNode.AnimationPlayerNode.Play(GameConstants.ANIM_MOVE);
@@ -35,7 +35,7 @@ public partial class EnemyReturnState : EnemyState
         GD.Print(characterNode.GlobalPosition);
         GD.Print(destination);
 
-        characterNode.GlobalPosition.DirectionTo(destination); //Calculates the direction to move the object to
+        characterNode.Velocity = characterNode.GlobalPosition.DirectionTo(destination); //Calculates the direction to move the object to
         
         characterNode.MoveAndSlide();
     }
