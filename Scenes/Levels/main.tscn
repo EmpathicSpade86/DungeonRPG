@@ -154,10 +154,6 @@ metadata/_editor_floor_ = Vector3(0, 2, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.61093, 0, -19.3056)
 curve = SubResource("Curve3D_1cmbe")
 
-[node name="Enemy" parent="Enemies/Path3D" node_paths=PackedStringArray("PathNode") instance=ExtResource("4_hg5ho")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.8197, 5.79251, 18.9823)
-PathNode = NodePath("..")
-
 [node name="Path3D2" type="Path3D" parent="Enemies"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.21745, 2.35933, -13.2416)
 curve = SubResource("Curve3D_oyuby")
@@ -165,6 +161,10 @@ curve = SubResource("Curve3D_oyuby")
 [node name="Path3D3" type="Path3D" parent="Enemies"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.9105, 0)
 curve = SubResource("Curve3D_bvq43")
+
+[node name="Enemy" parent="Enemies/Path3D3" node_paths=PackedStringArray("PathNode") instance=ExtResource("4_hg5ho")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.31144, -2.44945, -3.07595)
+PathNode = NodePath("..")
 
 [node name="Path3D4" type="Path3D" parent="Enemies"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.814, 2, 0)

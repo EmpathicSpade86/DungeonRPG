@@ -11,25 +11,32 @@ public partial class EnemyReturnState : EnemyState
         Vector3 localPos = characterNode.PathNode.Curve.GetPointPosition(0); //Get's the first point of the PathNode's Curve and sets it to the destination
         Vector3 globalPos = characterNode.PathNode.GlobalPosition;
         destination = globalPos + localPos; //Sets it so that we are using the global position, not the local position
+        //destination = characterNode.PathNode.GlobalPosition + characterNode.PathNode.Curve.GetPointPosition(0) - characterNode.GlobalPosition;
+
     }
 
-    protected override void EnterState()
+    protected override async void EnterState()
     {
+        GD.Print("In Return State");   
         characterNode.AnimationPlayerNode.Play(GameConstants.ANIM_MOVE);
-        SetPhysicsProcess(true);
+        characterNode.AgentNode.TargetPosition = destination;
     }
 
     public override void _PhysicsProcess(double delta)
     {
-        if (characterNode.GlobalPosition == destination)
+        if (characterNode.AgentNode.IsNavigationFinished())
         {
             //If the Enemy arrives at the destination
             GD.Print("Reached Destination");
             return;
         }
 
-        characterNode.GlobalPosition.DirectionTo(destination); //Calculates the direction to move the object to
+        GD.Print("Returning");
+        GD.Print(characterNode.GlobalPosition);
+        GD.Print(destination);
 
+        characterNode.GlobalPosition.DirectionTo(destination); //Calculates the direction to move the object to
+        
         characterNode.MoveAndSlide();
     }
 }

@@ -211,11 +211,12 @@ _data = {
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fgwu3"]
 height = 1.50457
 
-[node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("SpriteNode", "AnimationPlayerNode", "StateMachineNode")]
+[node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("SpriteNode", "AnimationPlayerNode", "StateMachineNode", "AgentNode")]
 script = ExtResource("1_nh8r1")
 SpriteNode = NodePath("Sprite3D")
 AnimationPlayerNode = NodePath("AnimationPlayer")
 StateMachineNode = NodePath("StateMachine")
+AgentNode = NodePath("NavigationAgent3D")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 pixel_size = 0.0025
@@ -231,7 +232,7 @@ autoplay = "Idle"
 shape = SubResource("CapsuleShape3D_fgwu3")
 
 [node name="StateMachine" parent="." node_paths=PackedStringArray("currentState", "states") instance=ExtResource("100_d8mbl")]
-currentState = NodePath("ReturnState")
+currentState = NodePath("IdleState")
 states = [NodePath("IdleState"), NodePath("ReturnState")]
 
 [node name="IdleState" type="Node" parent="StateMachine"]
@@ -239,3 +240,6 @@ script = ExtResource("101_ove7t")
 
 [node name="ReturnState" type="Node" parent="StateMachine"]
 script = ExtResource("103_42qah")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+debug_enabled = true
