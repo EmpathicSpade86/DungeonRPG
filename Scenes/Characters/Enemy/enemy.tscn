@@ -231,7 +231,7 @@ autoplay = "Idle"
 shape = SubResource("CapsuleShape3D_fgwu3")
 
 [node name="StateMachine" parent="." node_paths=PackedStringArray("currentState", "states") instance=ExtResource("100_d8mbl")]
-currentState = NodePath("IdleState")
+currentState = NodePath("ReturnState")
 states = [NodePath("IdleState"), NodePath("ReturnState")]
 
 [node name="IdleState" type="Node" parent="StateMachine"]
