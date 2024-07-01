@@ -3,16 +3,11 @@ using System;
 
 public partial class EnemyReturnState : EnemyState
 {
-    private Vector3 destination;
-
     public override void _Ready()
     {
         base._Ready();
-        Vector3 localPos = characterNode.PathNode.Curve.GetPointPosition(0); //Get's the first point of the PathNode's Curve and sets it to the destination
-        Vector3 globalPos = characterNode.PathNode.GlobalPosition;
-        destination = globalPos + localPos; //Sets it so that we are using the global position, not the local position
-        //destination = characterNode.PathNode.GlobalPosition + characterNode.PathNode.Curve.GetPointPosition(0) - characterNode.GlobalPosition;
-
+        
+        destination = GetPointGlobalPosition(0); //Return to the First point on the Enemy's Path
     }
 
     protected override void EnterState()
@@ -28,15 +23,14 @@ public partial class EnemyReturnState : EnemyState
         {
             //If the Enemy arrives at the destination
             GD.Print("Reached Destination");
+            characterNode.StateMachineNode.SwitchState<EnemyPatrolState>(); //Switch to Patrol State When You Reach Your Destination
             return;
         }
 
-        GD.Print("Returning");
-        GD.Print(characterNode.GlobalPosition);
-        GD.Print(destination);
+        // GD.Print("Returning");
+        // GD.Print(characterNode.GlobalPosition);
+        // GD.Print(destination);
 
-        characterNode.Velocity = characterNode.GlobalPosition.DirectionTo(destination); //Calculates the direction to move the object to
-        
-        characterNode.MoveAndSlide();
+        Move();
     }
 }
