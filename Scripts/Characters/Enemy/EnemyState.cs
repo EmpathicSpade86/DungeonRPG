@@ -17,8 +17,11 @@ public abstract partial class EnemyState : CharacterState
 
     protected void Move()
     {
+        //Tell the Agent to Update the target destination
+        characterNode.AgentNode.GetNextPathPosition();
+
+        //Move the Character Object
         characterNode.Velocity = characterNode.GlobalPosition.DirectionTo(destination); //Calculates the direction to move the object to
-        
         characterNode.MoveAndSlide();
     }
 }
