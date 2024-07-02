@@ -23,6 +23,7 @@ public abstract partial class EnemyState : CharacterState
         //Move the Character Object
         characterNode.Velocity = characterNode.GlobalPosition.DirectionTo(destination); //Calculates the direction to move the object to
         characterNode.MoveAndSlide();
+        characterNode.Flip();
     }
 
     protected void HandleChaseAreaBodyEntered(Node3D node3D)
