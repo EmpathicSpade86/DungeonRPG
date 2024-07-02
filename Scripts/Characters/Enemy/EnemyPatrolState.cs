@@ -19,6 +19,9 @@ public partial class EnemyPatrolState : EnemyState
         //Subscribe to the Handle Navigation Function Finished with the Navigation Finished Signal
         characterNode.AgentNode.NavigationFinished += HandleNavigationFinished;
         IdleTimerNode.Timeout += HandleTimeout;
+
+        //Subscribe to Entering the Chase State when the Player gets within range
+        characterNode.ChaseArea.BodyEntered += HandleChaseAreaBodyEntered;
     }
 
     protected override void ExitState()
@@ -27,6 +30,9 @@ public partial class EnemyPatrolState : EnemyState
         //Unsubscribe from the signal when Exiting the state
         characterNode.AgentNode.NavigationFinished -= HandleNavigationFinished;
         IdleTimerNode.Timeout -= HandleTimeout;
+
+        //Unsubscribe from the Body Entered Signal
+        characterNode.ChaseArea.BodyEntered -= HandleChaseAreaBodyEntered;
     }
 
     public override void _PhysicsProcess(double delta)
