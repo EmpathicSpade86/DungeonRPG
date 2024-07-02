@@ -6,8 +6,6 @@ public partial class EnemyPatrolState : EnemyState
     [Export] private Timer IdleTimerNode; //Timer for pausing
     [Export(PropertyHint.Range, "0,20,0.1")] private float maxIdleTime = 4.0f;
     private int pointIndex = 0;
-
-
     protected override void EnterState()
     {
         characterNode.AnimationPlayerNode.Play(GameConstants.ANIM_MOVE);
@@ -18,9 +16,17 @@ public partial class EnemyPatrolState : EnemyState
 
         characterNode.AgentNode.TargetPosition = destination;
 
+        //Subscribe to the Handle Navigation Function Finished with the Navigation Finished Signal
         characterNode.AgentNode.NavigationFinished += HandleNavigationFinished;
-
         IdleTimerNode.Timeout += HandleTimeout;
+    }
+
+    protected override void ExitState()
+    {
+        base.ExitState();
+        //Unsubscribe from the signal when Exiting the state
+        characterNode.AgentNode.NavigationFinished -= HandleNavigationFinished;
+        IdleTimerNode.Timeout -= HandleTimeout;
     }
 
     public override void _PhysicsProcess(double delta)

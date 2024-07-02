@@ -31,8 +31,12 @@ public abstract partial class CharacterState : Node
             //Deactivates the nodes when its state is deactivated
             SetPhysicsProcess(false);
             SetProcessInput(false);
+            //Call the Exit State Method
+            ExitState();
         }
     }
 
     protected virtual void EnterState() { } //Allow for child classes to perform logic while the state is enabled
+
+    protected virtual void ExitState() { } //Perform some set of actions before exiting the state
 }
