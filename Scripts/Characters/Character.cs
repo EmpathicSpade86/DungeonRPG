@@ -13,7 +13,7 @@ public abstract partial class Character : CharacterBody3D
     [Export] public Path3D PathNode { get; private set; }
     [Export] public NavigationAgent3D AgentNode { get; private set; }
     [Export] public Area3D ChaseArea { get; private set; }
-
+    [Export] public Area3D AttackArea { get; private set; }
     public Vector2 direction = new Vector2(0, 0);
 
 
