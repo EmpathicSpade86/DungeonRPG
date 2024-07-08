@@ -4,6 +4,7 @@ using System;
 public partial class PlayerAttackState : PlayerState
 {
     [Export] private Timer AttackComboResetTimer; 
+    [Export] float attackAnimationSpeed = 1.5f;
 
     // Since the Player has 2 Attacks, we will need to switch between them
     private int comboCounter = 1;
@@ -18,7 +19,7 @@ public partial class PlayerAttackState : PlayerState
 
     protected override void EnterState()
     {
-        characterNode.AnimationPlayerNode.Play(GameConstants.ANIM_ATTACK + comboCounter); //This is how we're going to play the different animations, Player's attack animations are labeled 'Attack1' and 'Attack2'
+        characterNode.AnimationPlayerNode.Play(GameConstants.ANIM_ATTACK + comboCounter, -1, attackAnimationSpeed); //This is how we're going to play the different animations, Player's attack animations are labeled 'Attack1' and 'Attack2'
         characterNode.AnimationPlayerNode.AnimationFinished += HandleAnimationFinished;
     }
 
