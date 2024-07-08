@@ -199,8 +199,13 @@ dashTimer = NodePath("DashTimer")
 wait_time = 0.4
 one_shot = true
 
-[node name="AttackState" type="Node" parent="StateMachine"]
+[node name="AttackState" type="Node" parent="StateMachine" node_paths=PackedStringArray("AttackComboResetTimer")]
 script = ExtResource("66_ncrfa")
+AttackComboResetTimer = NodePath("AttackComboResetTimer")
+
+[node name="AttackComboResetTimer" type="Timer" parent="StateMachine/AttackState"]
+wait_time = 2.0
+one_shot = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0338016, 0.291167, 0)
