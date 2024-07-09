@@ -1,6 +1,8 @@
 using Godot;
 using System;
 using System.IO;
+// LINQ is used for iterating and looking through Data
+using System.Linq;
 
 public abstract partial class Character : CharacterBody3D
 {
@@ -26,7 +28,29 @@ public abstract partial class Character : CharacterBody3D
 
     private void HandleHurtBoxEntered(Area3D area)
     {
-        GD.Print($"{area.Name} hit"); //area.Name + " hit"
+        // GD.Print($"{area.Name} hit"); //area.Name + " hit"
+        StatResource health = GetStatResource(Stat.Health); // Look for the Stat.Health method 
+
+        GD.Print(health.StatValue);
+    }
+
+    public StatResource GetStatResource(Stat getStat)
+    {
+        StatResource result = stats.Where((element) => element.StatType == getStat).FirstOrDefault();
+
+        // Below does the same as above, above uses LINQ
+
+        // StatResource result = null;
+        // // Loop through all the stats until you get the one you're looking for
+        // foreach (StatResource element in stats)
+        // {
+        //     if(element.StatType == getStat)
+        //     {
+        //         result = element;
+        //     }
+        // }
+
+        return result;
     }
 
     public void Flip()
