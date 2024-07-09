@@ -1,10 +1,11 @@
-[gd_scene load_steps=75 format=3 uid="uid://b7p3c3qhbawhs"]
+[gd_scene load_steps=78 format=3 uid="uid://b7p3c3qhbawhs"]
 
 [ext_resource type="Script" path="res://Scripts/Characters/Player/PlayerController.cs" id="1_4jxxq"]
 [ext_resource type="Texture2D" uid="uid://pvd2a8yj1ktr" path="res://Assets/Sprites/Characters/Player/Running/Running_000.png" id="1_p4pvp"]
 [ext_resource type="Texture2D" uid="uid://wkdgyy8r500c" path="res://Assets/Sprites/Characters/Player/Running/Running_003.png" id="1_v2uy6"]
 [ext_resource type="Texture2D" uid="uid://bbllnvv66yjn3" path="res://Assets/Sprites/Characters/Player/Slashing/Slashing_011.png" id="2_e1o1v"]
 [ext_resource type="Texture2D" uid="uid://copqdrud505xu" path="res://Assets/Sprites/Characters/Player/Idle Blinking/Idle Blinking_000.png" id="2_xvyak"]
+[ext_resource type="Script" path="res://Scripts/Resources/StatResource.cs" id="2_ynilm"]
 [ext_resource type="Texture2D" uid="uid://c4bnlsbq8vy3" path="res://Assets/Sprites/Characters/Player/Idle Blinking/Idle Blinking_001.png" id="3_odxqn"]
 [ext_resource type="Texture2D" uid="uid://nsjjoythbv7e" path="res://Assets/Sprites/Characters/Player/Idle Blinking/Idle Blinking_002.png" id="4_irg62"]
 [ext_resource type="Texture2D" uid="uid://clcosi6lwgnnk" path="res://Assets/Sprites/Characters/Player/Idle Blinking/Idle Blinking_003.png" id="5_ucxk1"]
@@ -66,6 +67,16 @@
 [ext_resource type="Texture2D" uid="uid://couqb4n5e6rx3" path="res://Assets/Sprites/Characters/Player/Slashing/Slashing_009.png" id="60_xyjqy"]
 [ext_resource type="Texture2D" uid="uid://bq2r2glqs7uww" path="res://Assets/Sprites/Characters/Player/Slashing/Slashing_010.png" id="61_p8xf4"]
 [ext_resource type="Script" path="res://Scripts/Characters/Player/PlayerAttackState.cs" id="66_ncrfa"]
+
+[sub_resource type="Resource" id="Resource_3ukp1"]
+script = ExtResource("2_ynilm")
+StatType = 0
+StatValue = 100.0
+
+[sub_resource type="Resource" id="Resource_m5d8g"]
+script = ExtResource("2_ynilm")
+StatType = 1
+StatValue = 3.0
 
 [sub_resource type="Animation" id="Animation_nrfj4"]
 resource_name = "Attack1"
@@ -170,6 +181,7 @@ collision_mask = 5
 floor_max_angle = 1.55334
 floor_snap_length = 0.2
 script = ExtResource("1_4jxxq")
+stats = Array[Object]([SubResource("Resource_3ukp1"), SubResource("Resource_m5d8g")])
 SpriteNode = NodePath("Sprite3D")
 AnimationPlayerNode = NodePath("AnimationPlayer")
 StateMachineNode = NodePath("StateMachine")
@@ -205,6 +217,7 @@ one_shot = true
 [node name="AttackState" type="Node" parent="StateMachine" node_paths=PackedStringArray("AttackComboResetTimer")]
 script = ExtResource("66_ncrfa")
 AttackComboResetTimer = NodePath("AttackComboResetTimer")
+attackAnimationSpeed = 2.0
 
 [node name="AttackComboResetTimer" type="Timer" parent="StateMachine/AttackState"]
 wait_time = 2.0
