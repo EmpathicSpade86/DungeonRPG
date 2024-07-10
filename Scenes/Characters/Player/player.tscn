@@ -93,6 +93,20 @@ tracks/0/keys = {
 "update": 1,
 "values": [ExtResource("39_3m8em"), ExtResource("40_doq1f"), ExtResource("41_p03sr"), ExtResource("42_t6in0"), ExtResource("43_0iprf"), ExtResource("44_vh8np"), ExtResource("45_2jagq"), ExtResource("46_0crjj"), ExtResource("47_6xb4i"), ExtResource("48_i6rlx"), ExtResource("49_hdr2i"), ExtResource("50_akfvt")]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StateMachine/AttackState")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.25),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"PerformHit"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_6jo4o"]
 resource_name = "Attack2"
@@ -108,6 +122,20 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [ExtResource("51_eaxxs"), ExtResource("52_btg88"), ExtResource("53_17246"), ExtResource("54_3gvjy"), ExtResource("55_2br3p"), ExtResource("56_h0ocx"), ExtResource("57_i5j0s"), ExtResource("58_1vfjl"), ExtResource("59_rm5lw"), ExtResource("60_xyjqy"), ExtResource("61_p8xf4"), ExtResource("2_e1o1v")]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StateMachine/AttackState")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.25),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"PerformHit"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_utk6q"]
@@ -189,7 +217,7 @@ StateMachineNode = NodePath("StateMachine")
 [node name="Sprite3D" type="Sprite3D" parent="."]
 pixel_size = 0.0025
 texture_filter = 0
-texture = ExtResource("2_e1o1v")
+texture = ExtResource("54_3gvjy")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

@@ -38,4 +38,9 @@ public partial class PlayerAttackState : PlayerState
 
         characterNode.StateMachineNode.SwitchState<PlayerIdleState>();
     }
+
+    private void PerformHit()
+    {
+        GD.Print("Perfrom Hit");
+    }
 }
