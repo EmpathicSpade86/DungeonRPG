@@ -41,6 +41,11 @@ public partial class PlayerAttackState : PlayerState
 
     private void PerformHit()
     {
-        GD.Print("Perfrom Hit");
+        Vector3 newPosition = characterNode.SpriteNode.FlipH ? Vector3.Left : Vector3.Right; // Turnary Operator, basically an if statment, if FlipH is true, it will set newPosition to Vector3.Left, if false Vector3.Right
+
+        float distanceMultiplier = .75f;
+        newPosition *= distanceMultiplier;
+
+        characterNode.HitBoxNode.Position = newPosition;
     }
 }
