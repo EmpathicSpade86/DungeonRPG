@@ -36,7 +36,10 @@ public partial class PlayerAttackState : PlayerState
         comboCounter++; 
         comboCounter = Mathf.Wrap(comboCounter, 1, maxComboCount + 1);
 
+        characterNode.ToggleHitBox(true);
+
         characterNode.StateMachineNode.SwitchState<PlayerIdleState>();
+
     }
 
     private void PerformHit()
@@ -47,5 +50,8 @@ public partial class PlayerAttackState : PlayerState
         newPosition *= distanceMultiplier;
 
         characterNode.HitBoxNode.Position = newPosition;
+
+        characterNode.ToggleHitBox(false); //This actually will enable the hitbox, it is because the property itself is called 'Disabled', so we are disabling the disabler
+
     }
 }
