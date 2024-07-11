@@ -220,7 +220,7 @@ HitBoxShapeNode = NodePath("HitBox/CollisionShape3D")
 [node name="Sprite3D" type="Sprite3D" parent="."]
 pixel_size = 0.0025
 texture_filter = 0
-texture = ExtResource("39_3m8em")
+texture = ExtResource("42_t6in0")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

@@ -12,7 +12,7 @@ public partial class EnemyReturnState : EnemyState
 
     protected override void EnterState()
     {
-        GD.Print("In Return State");
+        //GD.Print("In Return State");
         characterNode.AnimationPlayerNode.Play(GameConstants.ANIM_MOVE);
         characterNode.AgentNode.TargetPosition = destination;
 
@@ -29,7 +29,7 @@ public partial class EnemyReturnState : EnemyState
         if (characterNode.AgentNode.IsNavigationFinished())
         {
             //If the Enemy arrives at the destination
-            GD.Print("Reached Destination");
+            //GD.Print("Reached Destination");
             characterNode.StateMachineNode.SwitchState<EnemyPatrolState>(); //Switch to Patrol State When You Reach Your Destination
             return;
         }
