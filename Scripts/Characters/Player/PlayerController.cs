@@ -5,6 +5,7 @@ public partial class PlayerController : Character
 {
     public override void _Ready()
     {
+        base._Ready();
     }
 
     public override void _Input(InputEvent @event) //This Method is called only when the player makes an input 

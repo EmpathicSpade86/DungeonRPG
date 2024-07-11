@@ -30,6 +30,8 @@ public partial class StateMachine : Node
 
         if (newState == null) { return; }
 
+        if (currentState is T) { return; } // if the current state is the one we are switching to
+
         currentState.Notification(GameConstants.NOTIFCATION_EXIT_STATE); //Notification for disabling states
         currentState = newState;
         currentState.Notification(GameConstants.NOTIFCATION_ENTER_STATE); //Update the Current State of Animation

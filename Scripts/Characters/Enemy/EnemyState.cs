@@ -5,6 +5,13 @@ public abstract partial class EnemyState : CharacterState
 {
     protected Vector3 destination;
 
+    public override void _Ready()
+    {
+        base._Ready();
+        //Subscribe to checking the health of the player
+        characterNode.GetStatResource(Stat.Health).OnZero += HandleZeroHealth;
+    }
+
     protected Vector3 GetPointGlobalPosition(int index) //Function to get the points on the path and move the enemy object along it
     {
         //Get's the first point of the PathNode's Curve and sets it to the destination
@@ -29,5 +36,10 @@ public abstract partial class EnemyState : CharacterState
     protected void HandleChaseAreaBodyEntered(Node3D node3D)
     {
         characterNode.StateMachineNode.SwitchState<EnemyChaseState>();
+    }
+
+    private void HandleZeroHealth()
+    {
+        characterNode.StateMachineNode.SwitchState<EnemyDeathState>();
     }
 }
