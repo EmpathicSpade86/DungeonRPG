@@ -4,7 +4,7 @@ using System;
 [GlobalClass] // Exposes the Resource to Godot
 public partial class StatResource : Resource
 {
-    public Action OnZero; //Creates a Delegate 
+    public event Action OnZero; //Creates a Delegate 
 
     [Export] public Stat StatType { get; private set; }
 
