@@ -17,8 +17,18 @@ public partial class UIController : Control
             Cast<UIContainer>(): This casts the filtered elements to type UIContainer.
             ToDictionary((element) => element.container): This converts the cast elements into a dictionary, using the container property of each UIContainer as the key.
         **/
+
         containers[ContainerType.Start].Visible = true;
+        containers[ContainerType.Start].buttonNode.Pressed += HandleStartPressed;
+
     }
 
+    private void HandleStartPressed()
+    {
+        //Unpause the Game
+        GetTree().Paused = false;
+        //Hide the Start Menu
+        containers[ContainerType.Start].Visible = false;
+    }
 
 }
