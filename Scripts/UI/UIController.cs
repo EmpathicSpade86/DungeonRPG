@@ -20,7 +20,7 @@ public partial class UIController : Control
 
         containers[ContainerType.Start].Visible = true;
         containers[ContainerType.Start].buttonNode.Pressed += HandleStartPressed;
-
+        
     }
 
     private void HandleStartPressed()
@@ -29,6 +29,8 @@ public partial class UIController : Control
         GetTree().Paused = false;
         //Hide the Start Menu
         containers[ContainerType.Start].Visible = false;
+        //Tell the Game that we have started
+        GameEvents.RaiseStartGame();
     }
 
 }

@@ -37,7 +37,7 @@ public abstract partial class Character : CharacterBody3D
 
         health.StatValue -= player.GetStatResource(Stat.Strength).StatValue; // Grabs the Player's Strength and substarcts the enemy's health by the player's strength
 
-        GD.Print(health.StatValue);
+        //GD.Print(health.StatValue);
     }
 
     public StatResource GetStatResource(Stat getStat)
