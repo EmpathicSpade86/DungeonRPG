@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://b3k2yrddomri7"]
+[gd_scene load_steps=25 format=3 uid="uid://b3k2yrddomri7"]
 
 [ext_resource type="Script" path="res://Scripts/UI/UIController.cs" id="1_0mtl3"]
 [ext_resource type="Texture2D" uid="uid://btsbu8doh8tfa" path="res://Assets/Sprites/UI/UI Element 1.png" id="1_wmjgx"]
@@ -17,6 +17,8 @@
 [ext_resource type="Texture2D" uid="uid://dslxa3lltw8ue" path="res://Assets/Sprites/UI/UI Element 3.png" id="15_7wfvj"]
 [ext_resource type="Texture2D" uid="uid://cnan8r5tx4ki2" path="res://Assets/Sprites/UI/UI ElementUI 10.png" id="16_rjnu5"]
 [ext_resource type="Texture2D" uid="uid://b6eojsi5boij7" path="res://Assets/Sprites/UI/UI ElementUI 11.png" id="17_irjok"]
+[ext_resource type="Texture2D" uid="uid://b6ijv0gdsoy4k" path="res://Assets/Sprites/UI/UI Element 5.png" id="18_wp0oj"]
+[ext_resource type="Texture2D" uid="uid://cp3yash8hor5m" path="res://Assets/Sprites/UI/UI Element 4.png" id="19_v14qx"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bhb63"]
 texture = ExtResource("3_qiofh")
@@ -33,6 +35,13 @@ texture = ExtResource("7_dfsbf")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n60lt"]
 texture = ExtResource("15_7wfvj")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k4yb4"]
+texture = ExtResource("19_v14qx")
+expand_margin_left = 72.0
+expand_margin_top = 16.0
+expand_margin_right = 72.0
+expand_margin_bottom = 22.0
 
 [node name="UI" type="Control"]
 process_mode = 3
@@ -258,3 +267,56 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("17_irjok")
+
+[node name="PauseScreen" type="PanelContainer" parent="." node_paths=PackedStringArray("buttonNode")]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -260.0
+offset_top = -260.0
+offset_right = 260.0
+offset_bottom = 260.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_n60lt")
+script = ExtResource("2_bmoq1")
+container = 1
+buttonNode = NodePath("MarginContainer/VBoxContainer/Button")
+
+[node name="MarginContainer" type="MarginContainer" parent="PauseScreen"]
+layout_mode = 2
+theme_override_constants/margin_top = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseScreen/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="Label" type="Label" parent="PauseScreen/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("2_bd52u")
+theme_override_font_sizes/font_size = 48
+text = "PAUSE"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="PauseScreen/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("18_wp0oj")
+
+[node name="Button" type="Button" parent="PauseScreen/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_bd52u")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxTexture_k4yb4")
+theme_override_styles/hover = SubResource("StyleBoxTexture_k4yb4")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_k4yb4")
+theme_override_styles/focus = SubResource("StyleBoxTexture_k4yb4")
+text = "CONTINUE"

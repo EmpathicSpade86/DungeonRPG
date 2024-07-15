@@ -5,6 +5,7 @@ using System.Linq;
 
 public partial class UIController : Control
 {
+    private bool canPause = false;
     private Dictionary<ContainerType, UIContainer> containers;
 
     public override void _Ready()
@@ -23,9 +24,31 @@ public partial class UIController : Control
         //Listen for when the game finishes
         GameEvents.OnEndGame += HandleGameEnd;
         GameEvents.OnVictory += HandleVictory;
+        containers[ContainerType.Pause].buttonNode.Pressed += HandlePausePressed;
     }
+
+    public override void _Input(InputEvent @event)
+    {
+        if (!canPause) { return; } //If the Player Cannot Pause, don't
+
+        if (!Input.IsActionJustPressed(GameConstants.INPUT_PAUSE))
+        {
+            return;
+        }
+        else
+        {
+            //Switch between the Pause Menu and not when pausing and unpausing
+            containers[ContainerType.Stats].Visible = GetTree().Paused;
+            GetTree().Paused = !GetTree().Paused;
+            containers[ContainerType.Pause].Visible = GetTree().Paused;
+
+        }
+    }
+
     private void HandleStartPressed()
     {
+        //Allow the Player to pause the game
+        canPause = true;
         //Unpause the Game
         GetTree().Paused = false;
         //Hide the Start Menu
@@ -37,18 +60,30 @@ public partial class UIController : Control
     }
     private void HandleGameEnd()
     {
+        //Disallow the Player to pause the game
+        canPause = true;
         //Disable the Stats, display the defeatScreen
         containers[ContainerType.Stats].Visible = false;
         containers[ContainerType.Defeat].Visible = true;
+
     }
     private void HandleVictory()
     {
+        //Disallow the Player to pause the game
+        canPause = true;
         //Disable the Stats, display the Victory Screen
         containers[ContainerType.Stats].Visible = false;
         containers[ContainerType.Victory].Visible = true;
 
         //Pause the Game After Winning
         GetTree().Paused = true;
+    }
+
+    private void HandlePausePressed()
+    {
+        GetTree().Paused = false;
+        containers[ContainerType.Pause].Visible = false;
+        containers[ContainerType.Stats].Visible = true;
     }
 
 }
