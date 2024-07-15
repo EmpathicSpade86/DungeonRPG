@@ -13,6 +13,6 @@ public partial class EnemyDeathState : EnemyState
     private void HandleAnimationFinished(StringName animName)
     {
         // Delete the Enemy from the Scene
-        characterNode.QueueFree(); // Deletes the Node and Child Nodes
+        characterNode.PathNode.QueueFree(); // Deletes the Node and Child Nodes
     }
 }
