@@ -20,11 +20,9 @@ public partial class UIController : Control
 
         containers[ContainerType.Start].Visible = true;
         containers[ContainerType.Start].buttonNode.Pressed += HandleStartPressed;
-
-        
-        
+        //Listen for when the game finishes
+        GameEvents.OnEndGame += HandleGameEnd;
     }
-
     private void HandleStartPressed()
     {
         //Unpause the Game
@@ -36,5 +34,10 @@ public partial class UIController : Control
         //Tell the Game that we have started
         GameEvents.RaiseStartGame();
     }
-
+    private void HandleGameEnd()
+    {
+        //Disable the Stats, display the defeatScreen
+        containers[ContainerType.Stats].Visible = false;
+        containers[ContainerType.Defeat].Visible = true;
+    }
 }

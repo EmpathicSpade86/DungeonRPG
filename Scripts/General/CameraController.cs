@@ -22,5 +22,6 @@ public partial class CameraController : Camera3D
     private void HandleGameEnd()
     {
         Reparent(GetTree().CurrentScene); //CurrentScene Returns the root node of the scene
+        
     }
 }
