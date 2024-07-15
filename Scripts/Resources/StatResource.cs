@@ -5,6 +5,7 @@ using System;
 public partial class StatResource : Resource
 {
     public event Action OnZero; //Creates a Delegate 
+    public event Action OnUpdate; //Event for whenever a stat is updated
 
     [Export] public Stat StatType { get; private set; }
 
@@ -18,6 +19,8 @@ public partial class StatResource : Resource
         {
             // value is the intake number that we get from trying to set the variable
             _statValue = Mathf.Clamp(value, 0, Mathf.Inf); // We do this to make sure we don't accept any negative values
+
+            OnUpdate?.Invoke(); //Invoke the OnUpdate Event whenever a stat is changed
 
             if (_statValue == 0)
             {
