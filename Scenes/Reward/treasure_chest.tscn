@@ -1,12 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://bhqs5kju21j85"]
+[gd_scene load_steps=6 format=3 uid="uid://bhqs5kju21j85"]
 
 [ext_resource type="Texture2D" uid="uid://pq6loftwpn4t" path="res://Assets/Sprites/General/16x16.png" id="1_dqnuc"]
+[ext_resource type="Script" path="res://Scripts/Reward/TreasureChest.cs" id="1_reai0"]
 [ext_resource type="Texture2D" uid="uid://cihx5dhwauwqa" path="res://Assets/Sprites/UI/Keyboard Letters and Symbols.png" id="2_v5qrk"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ba3o1"]
 size = Vector3(0.780396, 0.875854, 0.386719)
 
-[node name="TreasureChest" type="StaticBody3D"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_ufbut"]
+radius = 2.0
+
+[node name="TreasureChest" type="StaticBody3D" node_paths=PackedStringArray("playerDetectArea", "iconNode")]
+script = ExtResource("1_reai0")
+playerDetectArea = NodePath("PlayerDetectArea")
+iconNode = NodePath("InteractIcon")
 
 [node name="ChestSprite" type="Sprite3D" parent="."]
 pixel_size = 0.05
@@ -27,3 +34,9 @@ texture_filter = 0
 texture = ExtResource("2_v5qrk")
 region_enabled = true
 region_rect = Rect2(64, 32, 15, 15)
+
+[node name="PlayerDetectArea" type="Area3D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDetectArea"]
+shape = SubResource("SphereShape3D_ufbut")
