@@ -25,6 +25,8 @@ public partial class UIController : Control
         GameEvents.OnEndGame += HandleGameEnd;
         GameEvents.OnVictory += HandleVictory;
         containers[ContainerType.Pause].buttonNode.Pressed += HandlePausePressed;
+        GameEvents.OnReward += HandleReward;
+        containers[ContainerType.Reward].buttonNode.Pressed += HandleRewardPressed;
     }
 
     public override void _Input(InputEvent @event)
@@ -84,6 +86,29 @@ public partial class UIController : Control
         GetTree().Paused = false;
         containers[ContainerType.Pause].Visible = false;
         containers[ContainerType.Stats].Visible = true;
+    }
+
+    private void HandleReward(RewardResource resource)
+    {
+        // Make it so the player cannot pause the game, but also stop all the enemies
+        canPause = false;
+        GetTree().Paused = true;
+        // Make the RewardUI Visible
+        containers[ContainerType.Stats].Visible = false;
+        containers[ContainerType.Reward].Visible = true;
+        // Update the UI with the new Texture and values
+        containers[ContainerType.Reward].textureNode.Texture = resource.SpriteTexture;
+        containers[ContainerType.Reward].labelNode.Text = resource.Description;
+        
+    }
+    private void HandleRewardPressed()
+    {
+        // When the button is pressed, negate everything we did in the HandleReward Method
+        canPause = true;
+        GetTree().Paused = false;
+        // Make the RewardUI Visible
+        containers[ContainerType.Stats].Visible = true;
+        containers[ContainerType.Reward].Visible = false;
     }
 
 }

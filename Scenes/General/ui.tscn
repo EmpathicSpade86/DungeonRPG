@@ -322,7 +322,7 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_k4yb4")
 theme_override_styles/focus = SubResource("StyleBoxTexture_k4yb4")
 text = "CONTINUE"
 
-[node name="RewardScreen" type="PanelContainer" parent="." node_paths=PackedStringArray("buttonNode")]
+[node name="RewardScreen" type="PanelContainer" parent="." node_paths=PackedStringArray("buttonNode", "textureNode", "labelNode")]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -339,7 +339,9 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_n60lt")
 script = ExtResource("2_bmoq1")
 container = 5
-buttonNode = NodePath("../PauseScreen/MarginContainer/VBoxContainer/Button")
+buttonNode = NodePath("MarginContainer/VBoxContainer/VBoxContainer/Button")
+textureNode = NodePath("MarginContainer/VBoxContainer/VBoxContainer/TextureRect")
+labelNode = NodePath("MarginContainer/VBoxContainer/VBoxContainer/RewardText")
 
 [node name="MarginContainer" type="MarginContainer" parent="RewardScreen"]
 layout_mode = 2

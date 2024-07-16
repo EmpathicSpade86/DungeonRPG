@@ -19,9 +19,10 @@ public partial class TreasureChest : StaticBody3D
     public override void _Input(InputEvent @event)
     {
         base._Input(@event);
-        if (Input.IsActionJustPressed(GameConstants.INPUT_INTERACT) && iconNode.Visible) //If the Area has overlapping and the player has interacted 
+        if (playerDetectArea.Monitoring && Input.IsActionJustPressed(GameConstants.INPUT_INTERACT) && iconNode.Visible) //If the Area has overlapping and the player has interacted 
         {
-            GD.Print("Interacted");
+            GameEvents.RaiseReward(reward);
+            playerDetectArea.Monitoring = false;
             return;
         }
         

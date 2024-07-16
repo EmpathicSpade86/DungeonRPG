@@ -16,4 +16,7 @@ public class GameEvents
     public static event Action OnVictory;
     public static void RaiseVictory() => OnVictory?.Invoke();
 
+    public static event Action<RewardResource> OnReward; 
+    public static void RaiseReward(RewardResource reward) => OnReward?.Invoke(reward);
+
 }
