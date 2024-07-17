@@ -3,6 +3,7 @@ using System;
 
 public partial class PlayerDashState : PlayerState
 {
+    [Export] private PackedScene bombScene; // Going to Spawn the bomb when we dash
     [Export] private Timer dashTimer;
     [Export(PropertyHint.Range, "0,20,0.1")] private float dashSpeed = 10.0f;
     //PropertyHint.Range, "0,20,0.1" will make the Export Field a slider value with a minimum value of 0, maximum value of 20, and will increment in values of 0.1
@@ -45,6 +46,11 @@ public partial class PlayerDashState : PlayerState
 
         characterNode.Velocity *= dashSpeed; //Apply the dash speed to the Player
         dashTimer.Start(); //Start the Timer when you switch to the State
+
+        //Spawn the Bomb at the player's location
+        Node3D bomb = bombScene.Instantiate<Node3D>(); //Creates the object in memory
+        GetTree().CurrentScene.AddChild(bomb); //Spawns the bomb
+        bomb.GlobalPosition = characterNode.GlobalPosition; //Moves the Bomb to the Starting Dash Position
 
     }
 
