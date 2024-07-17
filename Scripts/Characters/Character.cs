@@ -30,12 +30,17 @@ public abstract partial class Character : CharacterBody3D
 
     private void HandleHurtBoxEntered(Area3D area)
     {
+        if(area is not IHitbox hitBox) //checks to see if the class has the IHitbox interface
+        {
+            return;
+        }
+
         // GD.Print($"{area.Name} hit"); //area.Name + " hit"
         StatResource health = GetStatResource(Stat.Health); // Look for the Stat.Health method 
 
-        Character player = area.GetOwner<Character>(); //Get the Root node of the area, the Player is Inherited from the Character Class
+        float damage = hitBox.GetDamage();
 
-        health.StatValue -= player.GetStatResource(Stat.Strength).StatValue; // Grabs the Player's Strength and substarcts the enemy's health by the player's strength
+        health.StatValue -= damage;
 
         //GD.Print(health.StatValue);
     }

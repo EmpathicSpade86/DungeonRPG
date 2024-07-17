@@ -1,4 +1,4 @@
-[gd_scene load_steps=95 format=3 uid="uid://b7p3c3qhbawhs"]
+[gd_scene load_steps=96 format=3 uid="uid://b7p3c3qhbawhs"]
 
 [ext_resource type="Script" path="res://Scripts/Characters/Player/PlayerController.cs" id="1_4jxxq"]
 [ext_resource type="Texture2D" uid="uid://pvd2a8yj1ktr" path="res://Assets/Sprites/Characters/Player/Running/Running_000.png" id="1_p4pvp"]
@@ -85,6 +85,7 @@
 [ext_resource type="Texture2D" uid="uid://dcixyn1qntckg" path="res://Assets/Sprites/Characters/Player/Dying/Dying_013.png" id="76_dtsrk"]
 [ext_resource type="Texture2D" uid="uid://cs5rnnvdbm787" path="res://Assets/Sprites/Characters/Player/Dying/Dying_014.png" id="77_pt62h"]
 [ext_resource type="PackedScene" uid="uid://ejed7nqf5p5w" path="res://Scenes/Abilities/bomb.tscn" id="83_wijxh"]
+[ext_resource type="Script" path="res://Scripts/Characters/AttackHitBox.cs" id="86_ky5oy"]
 
 [sub_resource type="Animation" id="Animation_nrfj4"]
 resource_name = "Attack1"
@@ -298,6 +299,7 @@ shape = SubResource("CapsuleShape3D_1ll2h")
 [node name="HitBox" type="Area3D" parent="."]
 collision_layer = 2
 collision_mask = 0
+script = ExtResource("86_ky5oy")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0106201)

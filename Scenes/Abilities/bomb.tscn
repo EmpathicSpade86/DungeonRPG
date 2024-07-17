@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ejed7nqf5p5w"]
+[gd_scene load_steps=18 format=3 uid="uid://ejed7nqf5p5w"]
 
 [ext_resource type="Script" path="res://Scripts/Abilities/BombController.cs" id="1_558y2"]
 [ext_resource type="Texture2D" uid="uid://bx3i8rt7r8fh5" path="res://Assets/Sprites/Effects/Explosion/10.png" id="1_fpul3"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bxqkcs5epeivl" path="res://Assets/Sprites/Effects/Explosion/7.png" id="9_tkbyi"]
 [ext_resource type="Texture2D" uid="uid://fahxn1hr6xyv" path="res://Assets/Sprites/Effects/Explosion/8.png" id="10_bq40c"]
 [ext_resource type="Texture2D" uid="uid://b6nikbjn8tgav" path="res://Assets/Sprites/Effects/Explosion/9.png" id="11_ctkx1"]
+[ext_resource type="Script" path="res://Scripts/Abilities/AbilityHitBox.cs" id="13_2brf2"]
 
 [sub_resource type="Animation" id="Animation_y4v8c"]
 resource_name = "Expand"
@@ -107,6 +108,7 @@ autoplay = "Expand"
 [node name="ExplosionAreaHitBox" type="Area3D" parent="."]
 collision_layer = 2
 collision_mask = 0
+script = ExtResource("13_2brf2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ExplosionAreaHitBox"]
 shape = SubResource("SphereShape3D_k32ax")

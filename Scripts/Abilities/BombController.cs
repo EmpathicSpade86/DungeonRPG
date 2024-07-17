@@ -4,6 +4,7 @@ using System;
 public partial class BombController : Node3D
 {
     [Export] private AnimationPlayer animationPlayer;
+    [Export(PropertyHint.Range, "0,100,1")] public float damage { get; private set; } = 10.0f;
 
     public override void _Ready()
     {
