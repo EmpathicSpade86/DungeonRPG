@@ -1,0 +1,77 @@
+[gd_scene load_steps=18 format=3 uid="uid://dyu2ooa6c2n5g"]
+
+[ext_resource type="Texture2D" uid="uid://dyi1cfqsvy6g1" path="res://Assets/Sprites/Effects/Lightning/1.png" id="1_ji41s"]
+[ext_resource type="Script" path="res://Scripts/Abilities/LightningController.cs" id="1_ylpoe"]
+[ext_resource type="Texture2D" uid="uid://dwhm0sxqy1x30" path="res://Assets/Sprites/Effects/Lightning/2.png" id="2_brvpm"]
+[ext_resource type="Texture2D" uid="uid://3mlt36cwl5li" path="res://Assets/Sprites/Effects/Lightning/3.png" id="3_iv21n"]
+[ext_resource type="Texture2D" uid="uid://bbj4cav3pmb83" path="res://Assets/Sprites/Effects/Lightning/4.png" id="4_0dpo7"]
+[ext_resource type="Texture2D" uid="uid://c8gxrgnawof46" path="res://Assets/Sprites/Effects/Lightning/5.png" id="5_bu52f"]
+[ext_resource type="Texture2D" uid="uid://dr1wjmxmx3akk" path="res://Assets/Sprites/Effects/Lightning/6.png" id="6_t13ss"]
+[ext_resource type="Texture2D" uid="uid://codncvh7v2j6y" path="res://Assets/Sprites/Effects/Lightning/7.png" id="7_1ay0x"]
+[ext_resource type="Texture2D" uid="uid://b2ma5upf3j7n3" path="res://Assets/Sprites/Effects/Lightning/8.png" id="8_ex1sn"]
+[ext_resource type="Texture2D" uid="uid://tyd0mgc10eg3" path="res://Assets/Sprites/Effects/Lightning/9.png" id="9_hqsoi"]
+[ext_resource type="Texture2D" uid="uid://cyjiieee7dp0h" path="res://Assets/Sprites/Effects/Lightning/10.png" id="10_uq5gv"]
+[ext_resource type="Texture2D" uid="uid://dqjbf5icp5621" path="res://Assets/Sprites/Effects/Lightning/11.png" id="11_tf81e"]
+[ext_resource type="Texture2D" uid="uid://tpfis7x3fkom" path="res://Assets/Sprites/Effects/Lightning/12.png" id="12_daycc"]
+[ext_resource type="Script" path="res://Scripts/Abilities/AbilityHitBox.cs" id="14_e22gx"]
+
+[sub_resource type="Animation" id="Animation_6y2t5"]
+resource_name = "Lightning"
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("1_ji41s"), ExtResource("2_brvpm"), ExtResource("3_iv21n"), ExtResource("4_0dpo7"), ExtResource("5_bu52f"), ExtResource("6_t13ss"), ExtResource("7_1ay0x"), ExtResource("8_ex1sn"), ExtResource("9_hqsoi"), ExtResource("10_uq5gv"), ExtResource("11_tf81e"), ExtResource("12_daycc")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HitBox/CollisionShape3D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.25),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ip3yc"]
+_data = {
+"Lightning": SubResource("Animation_6y2t5")
+}
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_gniv4"]
+height = 3.5
+
+[node name="Lightning" type="Node3D" node_paths=PackedStringArray("animationPlayer")]
+script = ExtResource("1_ylpoe")
+animationPlayer = NodePath("AnimationPlayer")
+damage = 15.0
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+pixel_size = 0.02
+texture_filter = 0
+texture = ExtResource("1_ji41s")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ip3yc")
+}
+autoplay = "Lightning"
+
+[node name="HitBox" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("14_e22gx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox"]
+shape = SubResource("CylinderShape3D_gniv4")
+disabled = true

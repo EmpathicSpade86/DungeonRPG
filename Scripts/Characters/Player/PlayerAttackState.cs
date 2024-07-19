@@ -5,6 +5,7 @@ public partial class PlayerAttackState : PlayerState
 {
     [Export] private Timer AttackComboResetTimer; 
     [Export] float attackAnimationSpeed = 1.5f;
+    [Export] private PackedScene lightningScene;
 
     // Since the Player has 2 Attacks, we will need to switch between them
     private int comboCounter = 1;
@@ -21,12 +22,14 @@ public partial class PlayerAttackState : PlayerState
     {
         characterNode.AnimationPlayerNode.Play(GameConstants.ANIM_ATTACK + comboCounter, -1, attackAnimationSpeed); //This is how we're going to play the different animations, Player's attack animations are labeled 'Attack1' and 'Attack2'
         characterNode.AnimationPlayerNode.AnimationFinished += HandleAnimationFinished;
+        characterNode.HitBoxNode.BodyEntered += HandleHitBoxBodyEntered;
     }
 
     protected override void ExitState()
     {
         // Unsubscribe from the HandleAnimationFinished Signal
         characterNode.AnimationPlayerNode.AnimationFinished -= HandleAnimationFinished;
+        characterNode.HitBoxNode.BodyEntered -= HandleHitBoxBodyEntered;
         //Start the Timer after attacking
         AttackComboResetTimer.Start();
     }
@@ -53,5 +56,22 @@ public partial class PlayerAttackState : PlayerState
 
         characterNode.ToggleHitBox(false); //This actually will enable the hitbox, it is because the property itself is called 'Disabled', so we are disabling the disabler
 
+    }
+
+    private void HandleHitBoxBodyEntered(Node3D body)
+    {
+        if (comboCounter != maxComboCount)
+        {
+            return; // If the Player hasn't reached their max combo attacks
+        }
+
+        // Spawn the Lightning if we pass the condition
+
+        Node3D lightning = lightningScene.Instantiate<Node3D>();
+        GetTree().CurrentScene.AddChild(lightning);
+        
+        //Spawn the Lightning on the Enemy's position
+        lightning.GlobalPosition = body.GlobalPosition;
+        
     }
 }
