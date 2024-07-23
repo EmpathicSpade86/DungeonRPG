@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://di5344nlhrj8f"]
+[gd_scene load_steps=64 format=3 uid="uid://di5344nlhrj8f"]
 
 [ext_resource type="Script" path="res://Scripts/Levels/Main.cs" id="1_ytslm"]
 [ext_resource type="PackedScene" uid="uid://b7p3c3qhbawhs" path="res://Scenes/Characters/Player/player.tscn" id="2_mkoy2"]
@@ -34,6 +34,7 @@
 [ext_resource type="PackedScene" uid="uid://clxjaq3ykh528" path="res://Assets/Models/Dungeon/gltf/barrel_small.gltf.glb" id="25_lnd7e"]
 [ext_resource type="PackedScene" uid="uid://c7g3rjexkj4ie" path="res://Assets/Models/Dungeon/gltf/banner_patternA_blue.gltf.glb" id="26_1g5gx"]
 [ext_resource type="PackedScene" uid="uid://ii6sxvec8nxp" path="res://Assets/Models/Dungeon/gltf/pillar_decorated.gltf.glb" id="27_rvgou"]
+[ext_resource type="PackedScene" uid="uid://fj88vt1dhc41" path="res://Scenes/General/torch.tscn" id="29_2wdt3"]
 [ext_resource type="PackedScene" uid="uid://dtvcmkr4jv6p5" path="res://Assets/Models/Dungeon/gltf/box_stacked.gltf.glb" id="34_xw6w1"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_20842"]
@@ -91,7 +92,7 @@ StatValue = 20.0
 
 [sub_resource type="Curve3D" id="Curve3D_bvq43"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.239733, -2.45019, 3.95242, 0, 0, 0, 0, 0, 0, 15.5443, -2.55529, 4.1221, 0, 0, 0, 0, 0, 0, 15.1015, -2.53738, -0.710411, 0, 0, 0, 0, 0, 0, 1.25039, -2.30933, -1.85565, 0, 0, 0, 0, 0, 0, -0.239733, -2.45019, 3.95242),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 1.09273, -1.63783, 2.911, 0, 0, 0, 0, 0, 0, 14.6084, -1.84101, 2.9359, 0, 0, 0, 0, 0, 0, 15.1015, -2.53738, -0.710411, 0, 0, 0, 0, 0, 0, 1.25039, -2.30933, -1.85565, 0, 0, 0, 0, 0, 0, 1.06651, -1.64589, 2.92133),
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0)
 }
 point_count = 5
@@ -103,7 +104,7 @@ StatValue = 20.0
 
 [sub_resource type="Curve3D" id="Curve3D_agjek"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -12.3433, 0, -2.10862, 0, 0, 0, 0, 0, 0, -12.7646, 0, 4.2947, 0, 0, 0, 0, 0, 0, 17.1456, 0, 4.21044, 0, 0, 0, 0, 0, 0, 16.6401, 0, -3.54094, 0, 0, 0, 0, 0, 0, 4.08622, 0, -4.63625, 0, 0, 0, 0, 0, 0, -12.3433, 0, -2.10862),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -12.3433, 0, -2.10862, 0, 0, 0, 0, 0, 0, -12.7646, 0, 4.2947, 0, 0, 0, 0, 0, 0, 12.4087, -0.0575285, 3.74756, 0, 0, 0, 0, 0, 0, 16.6401, 0, -3.54094, 0, 0, 0, 0, 0, 0, 4.08622, 0, -4.63625, 0, 0, 0, 0, 0, 0, -12.3433, 0, -2.10862),
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0)
 }
 point_count = 6
@@ -568,6 +569,33 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.5049, 4.80509, -6.54158)
 
 [node name="banner_patternA_blue_gltf8" parent="Enviornment/WallItems" instance=ExtResource("26_1g5gx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.6532, 4.80509, -6.54158)
+
+[node name="Torch" parent="Enviornment/WallItems" instance=ExtResource("29_2wdt3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.4773, 6.8634, -6)
+
+[node name="Torch2" parent="Enviornment/WallItems" instance=ExtResource("29_2wdt3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.753, 2.55043, -6)
+
+[node name="Torch3" parent="Enviornment/WallItems" instance=ExtResource("29_2wdt3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11282, 3.02902, -6.15)
+
+[node name="Torch4" parent="Enviornment/WallItems" instance=ExtResource("29_2wdt3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.85124, 2.89746, -6.15)
+
+[node name="Torch5" parent="Enviornment/WallItems" instance=ExtResource("29_2wdt3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87522, 4.47636, -20)
+
+[node name="Torch6" parent="Enviornment/WallItems" instance=ExtResource("29_2wdt3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.7154, 2.69188, -6)
+
+[node name="Torch7" parent="Enviornment/WallItems" instance=ExtResource("29_2wdt3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62.2146, 3.7549, -45)
+
+[node name="Torch8" parent="Enviornment/WallItems" instance=ExtResource("29_2wdt3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.2195, 3.39613, -45)
+
+[node name="Torch9" parent="Enviornment/WallItems" instance=ExtResource("29_2wdt3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 77.6961, 3.04707, -45)
 
 [node name="Enemies" type="Node3D" parent="."]
 script = ExtResource("4_4efbb")
