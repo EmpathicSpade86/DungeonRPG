@@ -15,6 +15,7 @@ public abstract partial class Character : CharacterBody3D
     [Export] public Area3D HurtBox { get; private set; }
     [Export] public Area3D HitBoxNode { get; private set; }
     [Export] public CollisionShape3D HitBoxShapeNode { get; private set; }
+    [Export] public Timer HurtTimer { get; private set; }
 
     [ExportGroup("AI Nodes")]
     [Export] public Path3D PathNode { get; private set; }
@@ -23,14 +24,19 @@ public abstract partial class Character : CharacterBody3D
     [Export] public Area3D AttackArea { get; private set; }
 
     public Vector2 direction = new Vector2(0, 0);
+    private ShaderMaterial shader;
     public override void _Ready()
     {
+        shader = (ShaderMaterial)SpriteNode.MaterialOverlay;
+
         HurtBox.AreaEntered += HandleHurtBoxEntered;
+        SpriteNode.TextureChanged += HandleSpriteNodeTextureChanged; //Admitted when the texture changes
+        HurtTimer.Timeout += HandleHurtTimerTimeout;
     }
 
     private void HandleHurtBoxEntered(Area3D area)
     {
-        if(area is not IHitbox hitBox) //checks to see if the class has the IHitbox interface
+        if (area is not IHitbox hitBox) //checks to see if the class has the IHitbox interface
         {
             return;
         }
@@ -42,7 +48,20 @@ public abstract partial class Character : CharacterBody3D
 
         health.StatValue -= damage;
 
+        shader.SetShaderParameter("active", true); //Sets the shader to true
+        HurtTimer.Start();
         //GD.Print(health.StatValue);
+    }
+
+    private void HandleHurtTimerTimeout()
+    {
+        shader.SetShaderParameter("active", false); //Sets the shader to true
+    }
+
+    private void HandleSpriteNodeTextureChanged()
+    {
+        //This is for the shader
+        shader.SetShaderParameter("tex", SpriteNode.Texture); //Sets the texture in sync with the animation for the shader
     }
 
     public StatResource GetStatResource(Stat getStat)
@@ -75,7 +94,7 @@ public abstract partial class Character : CharacterBody3D
 
     }
 
-    public void ToggleHitBox (bool flag)
+    public void ToggleHitBox(bool flag)
     {
         HitBoxShapeNode.Disabled = flag;
     }
