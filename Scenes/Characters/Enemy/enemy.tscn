@@ -1,4 +1,4 @@
-[gd_scene load_steps=124 format=3 uid="uid://bx1nqkdhf2iyc"]
+[gd_scene load_steps=125 format=3 uid="uid://bx1nqkdhf2iyc"]
 
 [ext_resource type="Texture2D" uid="uid://c7ago5k1q0dac" path="res://Assets/Sprites/Characters/Enemy Knight/Death/0_Demons_of_Darkness_Dying_014.png" id="1_ghqmc"]
 [ext_resource type="Texture2D" uid="uid://dk0e11ifgx7ym" path="res://Assets/Sprites/Characters/Enemy Knight/Move/0_Demons_of_Darkness_Walking_020.png" id="1_n3njb"]
@@ -110,6 +110,7 @@
 [ext_resource type="Script" path="res://Scripts/Characters/Enemy/EnemyAttackState.cs" id="106_slvqi"]
 [ext_resource type="Script" path="res://Scripts/Characters/Enemy/EnemyDeathState.cs" id="108_rwuas"]
 [ext_resource type="Script" path="res://Scripts/Characters/AttackHitBox.cs" id="109_vo7ki"]
+[ext_resource type="Script" path="res://Scripts/Characters/Enemy/EnemyStunState.cs" id="110_t3651"]
 
 [sub_resource type="Resource" id="Resource_3sic2"]
 script = ExtResource("2_pvfv1")
@@ -322,6 +323,7 @@ script = ExtResource("106_slvqi")
 script = ExtResource("108_rwuas")
 
 [node name="StunState" type="Node" parent="StateMachine"]
+script = ExtResource("110_t3651")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 debug_enabled = true
