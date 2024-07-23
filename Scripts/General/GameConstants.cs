@@ -9,6 +9,7 @@ public class GameConstants
     public const string ANIM_DEATH = "Death";
     public const string ANIM_EXPAND = "Expand"; //Should Autoplay on load
     public const string ANIM_EXPLODE = "Explosion";
+    public const string ANIM_STUN = "Stun";
     //Input
     public const string INPUT_MOVE_LEFT = "MoveLeft";
     public const string INPUT_MOVE_RIGHT = "MoveRight";
