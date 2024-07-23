@@ -1,4 +1,4 @@
-[gd_scene load_steps=97 format=3 uid="uid://b7p3c3qhbawhs"]
+[gd_scene load_steps=98 format=3 uid="uid://b7p3c3qhbawhs"]
 
 [ext_resource type="Script" path="res://Scripts/Characters/Player/PlayerController.cs" id="1_4jxxq"]
 [ext_resource type="Texture2D" uid="uid://pvd2a8yj1ktr" path="res://Assets/Sprites/Characters/Player/Running/Running_000.png" id="1_p4pvp"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://copqdrud505xu" path="res://Assets/Sprites/Characters/Player/Idle Blinking/Idle Blinking_000.png" id="2_xvyak"]
 [ext_resource type="Resource" uid="uid://odlwhjflii0c" path="res://Resources/player_strength_stat.tres" id="3_0rsep"]
 [ext_resource type="Texture2D" uid="uid://c4bnlsbq8vy3" path="res://Assets/Sprites/Characters/Player/Idle Blinking/Idle Blinking_001.png" id="3_odxqn"]
+[ext_resource type="Shader" path="res://Shaders/character_hurt.gdshader" id="4_2873u"]
 [ext_resource type="Texture2D" uid="uid://nsjjoythbv7e" path="res://Assets/Sprites/Characters/Player/Idle Blinking/Idle Blinking_002.png" id="4_irg62"]
 [ext_resource type="Texture2D" uid="uid://clcosi6lwgnnk" path="res://Assets/Sprites/Characters/Player/Idle Blinking/Idle Blinking_003.png" id="5_ucxk1"]
 [ext_resource type="Texture2D" uid="uid://c0ch4lwakrne8" path="res://Assets/Sprites/Characters/Player/Idle Blinking/Idle Blinking_004.png" id="6_lga7m"]
@@ -85,8 +86,14 @@
 [ext_resource type="Texture2D" uid="uid://dcixyn1qntckg" path="res://Assets/Sprites/Characters/Player/Dying/Dying_013.png" id="76_dtsrk"]
 [ext_resource type="Texture2D" uid="uid://cs5rnnvdbm787" path="res://Assets/Sprites/Characters/Player/Dying/Dying_014.png" id="77_pt62h"]
 [ext_resource type="PackedScene" uid="uid://ejed7nqf5p5w" path="res://Scenes/Abilities/bomb.tscn" id="83_wijxh"]
-[ext_resource type="PackedScene" uid="uid://dyu2ooa6c2n5g" path="res://Scenes/Abilities/lightning.tscn" id="85_fb26w"]
 [ext_resource type="Script" path="res://Scripts/Characters/AttackHitBox.cs" id="86_ky5oy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fb1ex"]
+render_priority = 1
+shader = ExtResource("4_2873u")
+shader_parameter/active = false
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/tex = ExtResource("39_3m8em")
 
 [sub_resource type="Animation" id="Animation_nrfj4"]
 resource_name = "Attack1"
@@ -245,9 +252,10 @@ HitBoxNode = NodePath("HitBox")
 HitBoxShapeNode = NodePath("HitBox/CollisionShape3D")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
+material_overlay = SubResource("ShaderMaterial_fb1ex")
 pixel_size = 0.0025
 texture_filter = 0
-texture = ExtResource("42_t6in0")
+texture = ExtResource("39_3m8em")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -281,7 +289,6 @@ one_shot = true
 script = ExtResource("66_ncrfa")
 AttackComboResetTimer = NodePath("AttackComboResetTimer")
 attackAnimationSpeed = 2.0
-lightningScene = ExtResource("85_fb26w")
 
 [node name="AttackComboResetTimer" type="Timer" parent="StateMachine/AttackState"]
 wait_time = 2.0

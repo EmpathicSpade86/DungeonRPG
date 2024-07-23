@@ -1,10 +1,11 @@
-[gd_scene load_steps=122 format=3 uid="uid://bx1nqkdhf2iyc"]
+[gd_scene load_steps=124 format=3 uid="uid://bx1nqkdhf2iyc"]
 
 [ext_resource type="Texture2D" uid="uid://c7ago5k1q0dac" path="res://Assets/Sprites/Characters/Enemy Knight/Death/0_Demons_of_Darkness_Dying_014.png" id="1_ghqmc"]
 [ext_resource type="Texture2D" uid="uid://dk0e11ifgx7ym" path="res://Assets/Sprites/Characters/Enemy Knight/Move/0_Demons_of_Darkness_Walking_020.png" id="1_n3njb"]
 [ext_resource type="Script" path="res://Scripts/Characters/Enemy/EnemyController.cs" id="1_nh8r1"]
 [ext_resource type="Texture2D" uid="uid://dpx066np2gbhc" path="res://Assets/Sprites/Characters/Enemy Knight/Idle/0_Demons_of_Darkness_Idle_000.png" id="2_4guxb"]
 [ext_resource type="Script" path="res://Scripts/Resources/StatResource.cs" id="2_pvfv1"]
+[ext_resource type="Shader" path="res://Shaders/character_hurt.gdshader" id="3_pqd3g"]
 [ext_resource type="Texture2D" uid="uid://cy76ee6ql8no" path="res://Assets/Sprites/Characters/Enemy Knight/Idle/0_Demons_of_Darkness_Idle_001.png" id="3_txhjh"]
 [ext_resource type="Texture2D" uid="uid://bt6qihne82f2y" path="res://Assets/Sprites/Characters/Enemy Knight/Idle/0_Demons_of_Darkness_Idle_002.png" id="4_4gnwv"]
 [ext_resource type="Texture2D" uid="uid://c6nejsvqtb4hk" path="res://Assets/Sprites/Characters/Enemy Knight/Idle/0_Demons_of_Darkness_Idle_003.png" id="5_gqeg2"]
@@ -119,6 +120,13 @@ StatValue = 20.0
 script = ExtResource("2_pvfv1")
 StatType = 1
 StatValue = 4.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dw53l"]
+render_priority = 1
+shader = ExtResource("3_pqd3g")
+shader_parameter/active = false
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/tex = ExtResource("73_yc5ux")
 
 [sub_resource type="Animation" id="Animation_dv7cj"]
 resource_name = "Attack"
@@ -266,6 +274,7 @@ ChaseArea = NodePath("ChaseArea")
 AttackArea = NodePath("AttackArea")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
+material_overlay = SubResource("ShaderMaterial_dw53l")
 pixel_size = 0.0025
 texture = ExtResource("73_yc5ux")
 
