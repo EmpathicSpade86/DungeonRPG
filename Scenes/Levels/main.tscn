@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://di5344nlhrj8f"]
+[gd_scene load_steps=65 format=3 uid="uid://di5344nlhrj8f"]
 
 [ext_resource type="Script" path="res://Scripts/Levels/Main.cs" id="1_ytslm"]
 [ext_resource type="PackedScene" uid="uid://b7p3c3qhbawhs" path="res://Scenes/Characters/Player/player.tscn" id="2_mkoy2"]
@@ -35,6 +35,7 @@
 [ext_resource type="PackedScene" uid="uid://c7g3rjexkj4ie" path="res://Assets/Models/Dungeon/gltf/banner_patternA_blue.gltf.glb" id="26_1g5gx"]
 [ext_resource type="PackedScene" uid="uid://ii6sxvec8nxp" path="res://Assets/Models/Dungeon/gltf/pillar_decorated.gltf.glb" id="27_rvgou"]
 [ext_resource type="PackedScene" uid="uid://fj88vt1dhc41" path="res://Scenes/General/torch.tscn" id="29_2wdt3"]
+[ext_resource type="PackedScene" uid="uid://cjiqpqqmdqn0g" path="res://Scenes/General/candle.tscn" id="30_45mcb"]
 [ext_resource type="PackedScene" uid="uid://dtvcmkr4jv6p5" path="res://Assets/Models/Dungeon/gltf/box_stacked.gltf.glb" id="34_xw6w1"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_20842"]
@@ -596,6 +597,24 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.2195, 3.39613, -45)
 
 [node name="Torch9" parent="Enviornment/WallItems" instance=ExtResource("29_2wdt3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 77.6961, 3.04707, -45)
+
+[node name="Candle" parent="Enviornment/WallItems" instance=ExtResource("30_45mcb")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1.92121, 2, 4.87274)
+
+[node name="Candle2" parent="Enviornment/WallItems" instance=ExtResource("30_45mcb")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 2.55082, 2, 4.87274)
+
+[node name="Candle3" parent="Enviornment/WallItems" instance=ExtResource("30_45mcb")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 8.67887, 2, 4.87274)
+
+[node name="Candle4" parent="Enviornment/WallItems" instance=ExtResource("30_45mcb")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 18.8168, 2, 4.87274)
+
+[node name="Candle5" parent="Enviornment/WallItems" instance=ExtResource("30_45mcb")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 37.4651, 2, 4.87274)
+
+[node name="Candle6" parent="Enviornment/WallItems" instance=ExtResource("30_45mcb")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 56.2485, 2, 4.87274)
 
 [node name="Enemies" type="Node3D" parent="."]
 script = ExtResource("4_4efbb")
