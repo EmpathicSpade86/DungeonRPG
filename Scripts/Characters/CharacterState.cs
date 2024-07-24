@@ -7,6 +7,7 @@ using System;
 public abstract partial class CharacterState : Node
 {
     protected Character characterNode; // Protected so children can access, not outside of these classes
+    public Func<bool> CanTransition = () => true; 
     public override void _Ready()
     {
         characterNode = GetOwner<Character>();

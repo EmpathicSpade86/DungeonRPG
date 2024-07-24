@@ -5,12 +5,14 @@ public partial class PlayerDashState : PlayerState
 {
     [Export] private PackedScene bombScene; // Going to Spawn the bomb when we dash
     [Export] private Timer dashTimer;
+    [Export] private Timer coolDownTimer;
     [Export(PropertyHint.Range, "0,20,0.1")] private float dashSpeed = 10.0f;
     //PropertyHint.Range, "0,20,0.1" will make the Export Field a slider value with a minimum value of 0, maximum value of 20, and will increment in values of 0.1
     public override void _Ready()
     {
         base._Ready(); //Call the base method from the PlayerState class
         dashTimer.Timeout += HandleDashTimeout;
+        CanTransition = () => coolDownTimer.IsStopped();
     }
 
     public override void _PhysicsProcess(double delta)
@@ -56,8 +58,10 @@ public partial class PlayerDashState : PlayerState
 
     private void HandleDashTimeout()
     {
+        coolDownTimer.Start();
         //What to do when the Timer Reaches 0
         characterNode.Velocity = Vector3.Zero; //Reset the Velocity after the Timer Runs out
         characterNode.StateMachineNode.SwitchState<PlayerIdleState>();
+
     }
 }

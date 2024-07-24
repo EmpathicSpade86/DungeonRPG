@@ -5,7 +5,7 @@ using System.Linq;
 public partial class StateMachine : Node
 {
     [Export] private Node currentState;
-    [Export] private Node[] states;
+    [Export] private CharacterState[] states;
 
     public override void _Ready()
     {
@@ -16,7 +16,7 @@ public partial class StateMachine : Node
     public void SwitchState<T>() //Given a type: PlayerIdleState, PlayerMoveState...
     {
         //This is using LINQ
-        Node newState = states.Where((state) => state is T).FirstOrDefault();
+        CharacterState newState = states.Where((state) => state is T).FirstOrDefault();
 
         //This is normal, but does the same thing as LINQ
         // Node newState = null;
@@ -31,6 +31,8 @@ public partial class StateMachine : Node
         if (newState == null) { return; }
 
         if (currentState is T) { return; } // if the current state is the one we are switching to
+
+        if (!newState.CanTransition()) { return; }
 
         currentState.Notification(GameConstants.NOTIFCATION_EXIT_STATE); //Notification for disabling states
         currentState = newState;
